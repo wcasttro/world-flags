@@ -11,9 +11,12 @@ class CountryService {
 
   static Future<List<Country>> getAllCountries([Language? language]) async {
     try {
-      final langCode = language?.code ?? 'en';
+      // A API REST Countries v3.1 não suporta o parâmetro lang diretamente
+      // Vamos buscar todos os países e fazer a tradução localmente
+      const url = '$_baseUrl/all?fields=name,flags,cca2';
+
       final response = await http.get(
-        Uri.parse('$_baseUrl/all?fields=name,flags,cca2&lang=$langCode'),
+        Uri.parse(url),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -21,7 +24,8 @@ class CountryService {
 
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
-        return data.map((json) => Country.fromJson(json)).toList();
+        final countries = data.map((json) => Country.fromJson(json)).toList();
+        return countries;
       } else {
         inspect(response);
         throw Exception('Falha ao carregar países: ${response.statusCode}');

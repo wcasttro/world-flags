@@ -1,3 +1,6 @@
+import '../services/translation_service.dart';
+import 'language.dart';
+
 class Country {
   final String name;
   final String flagUrl;
@@ -17,6 +20,10 @@ class Country {
     );
   }
 
+  String getTranslatedName(Language language) {
+    return TranslationService.translateCountryName(name, language, code);
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'name': {'common': name},
@@ -24,4 +31,4 @@ class Country {
       'cca2': code,
     };
   }
-} 
+}

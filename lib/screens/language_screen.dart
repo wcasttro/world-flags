@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/language.dart';
 import '../services/language_service.dart';
+import '../services/ui_translation_service.dart';
 import 'home_screen.dart';
 
 class LanguageScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class LanguageScreen extends StatefulWidget {
 
 class _LanguageScreenState extends State<LanguageScreen> {
   Language? _selectedLanguage;
+  Language? _currentLanguage;
   bool _isLoading = true;
 
   @override
@@ -24,6 +26,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
     final currentLanguage = await LanguageService.getSelectedLanguage();
     setState(() {
       _selectedLanguage = currentLanguage;
+      _currentLanguage = currentLanguage;
       _isLoading = false;
     });
   }
@@ -47,9 +50,17 @@ class _LanguageScreenState extends State<LanguageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_currentLanguage == null) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Selecionar Idioma'),
+        title: Text(UITranslationService.translate('language_title', _currentLanguage!)),
         backgroundColor: const Color(0xFF1E3A8A),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -79,7 +90,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                     children: [
                       // Título
                       Text(
-                        'Escolha o idioma para os nomes dos países:',
+                        UITranslationService.translate('language_subtitle', _currentLanguage!),
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -205,9 +216,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
                             ),
                             padding: const EdgeInsets.symmetric(vertical: 16),
                           ),
-                          child: const Text(
-                            'Voltar',
-                            style: TextStyle(
+                          child: Text(
+                            UITranslationService.translate('cancel_button', _currentLanguage!),
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),

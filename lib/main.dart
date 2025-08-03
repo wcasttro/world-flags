@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
+import 'services/translation_service.dart';
+import 'services/ui_translation_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await TranslationService.initialize();
+  await UITranslationService.initialize();
   runApp(const MyApp());
 }
 

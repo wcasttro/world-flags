@@ -1,13 +1,44 @@
 import 'package:flutter/material.dart';
+import '../models/language.dart';
+import '../services/language_service.dart';
+import '../services/ui_translation_service.dart';
 import 'game_screen.dart';
 import 'leaderboard_screen.dart';
 import 'language_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Language? _selectedLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSelectedLanguage();
+  }
+
+  Future<void> _loadSelectedLanguage() async {
+    final language = await LanguageService.getSelectedLanguage();
+    setState(() {
+      _selectedLanguage = language;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_selectedLanguage == null) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -47,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'World Flags',
+                        UITranslationService.translate('home_title', _selectedLanguage!),
                         style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -55,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Teste seu conhecimento sobre bandeiras do mundo',
+                        UITranslationService.translate('home_subtitle', _selectedLanguage!),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Colors.white.withOpacity(0.9),
@@ -70,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                 // Botões do menu
                 _buildMenuButton(
                   context,
-                  'Jogar',
+                  UITranslationService.translate('play_button', _selectedLanguage!),
                   Icons.play_arrow,
                   () => Navigator.push(
                     context,
@@ -84,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                 
                 _buildMenuButton(
                   context,
-                  'Ranking',
+                  UITranslationService.translate('leaderboard_button', _selectedLanguage!),
                   Icons.leaderboard,
                   () => Navigator.push(
                     context,
@@ -98,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                 
                 _buildMenuButton(
                   context,
-                  'Idioma',
+                  UITranslationService.translate('language_button', _selectedLanguage!),
                   Icons.language,
                   () => Navigator.push(
                     context,
@@ -112,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                 
                 _buildMenuButton(
                   context,
-                  'Sobre',
+                  UITranslationService.translate('about_button', _selectedLanguage!),
                   Icons.info,
                   () => _showAboutDialog(context),
                 ),
@@ -169,17 +200,14 @@ class HomeScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Sobre o App'),
-        content: const Text(
-          'World Flags é um jogo educativo que testa seu conhecimento sobre '
-          'bandeiras de países ao redor do mundo.\n\n'
-          'Responda perguntas sobre qual país cada bandeira representa e '
-          'melhore sua pontuação!',
+        title: Text(UITranslationService.translate('about_title', _selectedLanguage!)),
+        content: Text(
+          UITranslationService.translate('about_description', _selectedLanguage!),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
+            child: Text(UITranslationService.translate('confirm_button', _selectedLanguage!)),
           ),
         ],
       ),

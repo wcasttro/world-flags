@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/language.dart';
+import '../services/language_service.dart';
+import '../services/ui_translation_service.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({super.key});
@@ -11,11 +14,20 @@ class LeaderboardScreen extends StatefulWidget {
 class _LeaderboardScreenState extends State<LeaderboardScreen> {
   List<MapEntry<int, DateTime>> _scores = [];
   bool _isLoading = true;
+  Language? _selectedLanguage;
 
   @override
   void initState() {
     super.initState();
+    _loadSelectedLanguage();
     _loadScores();
+  }
+
+  Future<void> _loadSelectedLanguage() async {
+    final language = await LanguageService.getSelectedLanguage();
+    setState(() {
+      _selectedLanguage = language;
+    });
   }
 
   Future<void> _loadScores() async {
@@ -55,9 +67,17 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_selectedLanguage == null) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ranking'),
+        title: Text(UITranslationService.translate('leaderboard_title', _selectedLanguage!)),
         backgroundColor: const Color(0xFF1E3A8A),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -80,17 +100,17 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           ),
         ),
         child: _isLoading
-            ? const Center(
+            ? Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(
+                    const CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
-                      'Carregando ranking...',
-                      style: TextStyle(color: Colors.white),
+                      UITranslationService.translate('loading_message', _selectedLanguage!),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
@@ -106,9 +126,9 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                           color: Colors.white,
                         ),
                         const SizedBox(height: 16),
-                        const Text(
-                          'Nenhum score ainda',
-                          style: TextStyle(
+                        Text(
+                          UITranslationService.translate('no_scores_message', _selectedLanguage!),
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -175,12 +195,12 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                               fontSize: 18,
                             ),
                           ),
-                                                     subtitle: Text(
-                             _formatDate(score.value),
-                             style: TextStyle(
-                               color: Colors.white.withOpacity(0.8),
-                             ),
-                           ),
+                          subtitle: Text(
+                            _formatDate(score.value),
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.8),
+                            ),
+                          ),
                           trailing: Text(
                             '${(score.key / 10 * 100).toInt()}%',
                             style: TextStyle(
@@ -233,15 +253,18 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   String _formatDate(DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date);
-    
-    if (difference.inDays > 0) {
-      return '${difference.inDays} dia${difference.inDays > 1 ? 's' : ''} atrás';
-    } else if (difference.inHours > 0) {
-      return '${difference.inHours} hora${difference.inHours > 1 ? 's' : ''} atrás';
-    } else if (difference.inMinutes > 0) {
-      return '${difference.inMinutes} minuto${difference.inMinutes > 1 ? 's' : ''} atrás';
+
+    if (difference.inDays == 0) {
+      if (difference.inHours == 0) {
+        return '${difference.inMinutes} min atrás';
+      }
+      return '${difference.inHours} h atrás';
+    } else if (difference.inDays == 1) {
+      return 'Ontem';
+    } else if (difference.inDays < 7) {
+      return '${difference.inDays} dias atrás';
     } else {
-      return 'Agora mesmo';
+      return '${date.day}/${date.month}/${date.year}';
     }
   }
 } 

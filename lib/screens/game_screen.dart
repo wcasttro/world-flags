@@ -1,9 +1,14 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
+
 import '../models/country.dart';
 import '../models/game_state.dart';
+import '../models/language.dart';
 import '../services/country_service.dart';
 import '../services/language_service.dart';
+import '../services/ui_translation_service.dart';
+import '../widgets/animated_option_button.dart';
 import 'game_over_screen.dart';
 
 class GameScreen extends StatefulWidget {
@@ -17,6 +22,7 @@ class _GameScreenState extends State<GameScreen> {
   GameState? _gameState;
   bool _isLoading = true;
   String? _error;
+  Language? _selectedLanguage;
 
   @override
   void initState() {
@@ -32,9 +38,13 @@ class _GameScreenState extends State<GameScreen> {
       });
 
       final selectedLanguage = await LanguageService.getSelectedLanguage();
-      final countries = await CountryService.getRandomCountries(50, selectedLanguage);
+      setState(() {
+        _selectedLanguage = selectedLanguage;
+      });
+
+      final countries = await CountryService.getRandomCountries(50);
       final gameCountries = countries.take(10).toList();
-      
+
       setState(() {
         _gameState = GameState(
           currentQuestion: 0,
@@ -58,23 +68,29 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _loadNextQuestion() {
-    if (_gameState == null || _gameState!.isGameOver) return;
+    if (_gameState == null ||
+        _gameState!.isGameOver ||
+        _selectedLanguage == null) return;
 
     final currentCountry = _gameState!.countries[_gameState!.currentQuestion];
     final allCountries = List<Country>.from(_gameState!.countries);
     allCountries.shuffle();
 
     // Gerar opções: resposta correta + 3 opções aleatórias
-    final options = <String>[currentCountry.name];
+    final options = <String>[
+      currentCountry.getTranslatedName(_selectedLanguage!)
+    ];
     final random = Random();
-    
+
     while (options.length < 4) {
       final randomCountry = allCountries[random.nextInt(allCountries.length)];
-      if (!options.contains(randomCountry.name)) {
-        options.add(randomCountry.name);
+      final translatedName =
+          randomCountry.getTranslatedName(_selectedLanguage!);
+      if (!options.contains(translatedName)) {
+        options.add(translatedName);
       }
     }
-    
+
     options.shuffle();
 
     setState(() {
@@ -88,9 +104,13 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _answerQuestion(String selectedAnswer) {
-    if (_gameState == null || _gameState!.isAnswered) return;
+    if (_gameState == null ||
+        _gameState!.isAnswered ||
+        _selectedLanguage == null) return;
 
-    final isCorrect = selectedAnswer == _gameState!.currentCountry!.name;
+    final correctAnswer =
+        _gameState!.currentCountry!.getTranslatedName(_selectedLanguage!);
+    final isCorrect = selectedAnswer == correctAnswer;
     final newScore = _gameState!.score + (isCorrect ? 1 : 0);
 
     setState(() {
@@ -228,32 +248,32 @@ class _GameScreenState extends State<GameScreen> {
                   backgroundColor: Colors.white.withOpacity(0.3),
                   valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Pergunta
                 Text(
-                  'Qual é este país?',
+                  UITranslationService.translate(
+                      'game_question', _selectedLanguage!),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Bandeira
                 Expanded(
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 10,
-                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 15,
+                          offset: const Offset(0, 8),
                         ),
                       ],
                     ),
@@ -263,17 +283,25 @@ class _GameScreenState extends State<GameScreen> {
                         _gameState!.currentCountry!.flagUrl,
                         fit: BoxFit.contain,
                         errorBuilder: (context, error, stackTrace) {
-                          return const Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.flag, size: 64, color: Colors.grey),
-                                SizedBox(height: 16),
-                                Text(
-                                  'Erro ao carregar bandeira',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ],
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(Icons.flag,
+                                      size: 64, color: Colors.white),
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    UITranslationService.translate(
+                                        'error_message', _selectedLanguage!),
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -281,11 +309,12 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Opções
-                ..._gameState!.options.map((option) => _buildOptionButton(option)),
+                ..._gameState!.options
+                    .map((option) => _buildOptionButton(option)),
               ],
             ),
           ),
@@ -295,58 +324,32 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Widget _buildOptionButton(String option) {
-    final isSelected = _gameState!.isAnswered && option == _gameState!.currentCountry!.name;
-    final isCorrect = _gameState!.isAnswered && _gameState!.isCorrect && isSelected;
-    final isWrong = _gameState!.isAnswered && !_gameState!.isCorrect && option == _gameState!.currentCountry!.name;
+    final isSelected = _gameState!.isAnswered &&
+        option ==
+            _gameState!.currentCountry!.getTranslatedName(_selectedLanguage!);
+    final isCorrect =
+        _gameState!.isAnswered && _gameState!.isCorrect && isSelected;
+    final isWrong = _gameState!.isAnswered &&
+        !_gameState!.isCorrect &&
+        option ==
+            _gameState!.currentCountry!.getTranslatedName(_selectedLanguage!);
 
-    Color backgroundColor;
-    Color textColor;
-    Color borderColor;
-
+    IconData? feedbackIcon;
     if (_gameState!.isAnswered) {
       if (isCorrect) {
-        backgroundColor = Colors.green;
-        textColor = Colors.white;
-        borderColor = Colors.green;
+        feedbackIcon = Icons.check_circle;
       } else if (isWrong) {
-        backgroundColor = Colors.red;
-        textColor = Colors.white;
-        borderColor = Colors.red;
-      } else {
-        backgroundColor = Colors.white.withOpacity(0.1);
-        textColor = Colors.white.withOpacity(0.7);
-        borderColor = Colors.white.withOpacity(0.3);
+        feedbackIcon = Icons.cancel;
       }
-    } else {
-      backgroundColor = Colors.white.withOpacity(0.1);
-      textColor = Colors.white;
-      borderColor = Colors.white.withOpacity(0.3);
     }
 
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ElevatedButton(
-        onPressed: _gameState!.isAnswered ? null : () => _answerQuestion(option),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: BorderSide(color: borderColor, width: 2),
-          ),
-          elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-        ),
-        child: Text(
-          option,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: textColor,
-          ),
-        ),
-      ),
+    return AnimatedOptionButton(
+      text: option,
+      onPressed: () => _answerQuestion(option),
+      isCorrect: isCorrect,
+      isWrong: isWrong,
+      isAnswered: _gameState!.isAnswered,
+      feedbackIcon: feedbackIcon,
     );
   }
-} 
+}

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/language.dart';
+import '../services/language_service.dart';
+import '../services/ui_translation_service.dart';
 import 'home_screen.dart';
 import 'game_screen.dart';
 
@@ -19,11 +22,20 @@ class GameOverScreen extends StatefulWidget {
 
 class _GameOverScreenState extends State<GameOverScreen> {
   bool _isSaving = false;
+  Language? _selectedLanguage;
 
   @override
   void initState() {
     super.initState();
+    _loadSelectedLanguage();
     _saveScore();
+  }
+
+  Future<void> _loadSelectedLanguage() async {
+    final language = await LanguageService.getSelectedLanguage();
+    setState(() {
+      _selectedLanguage = language;
+    });
   }
 
   Future<void> _saveScore() async {
@@ -58,16 +70,17 @@ class _GameOverScreenState extends State<GameOverScreen> {
   }
 
   double get _percentage => widget.score / widget.totalQuestions;
-  String get _message {
-    if (_percentage >= 0.9) return 'Excelente! Você é um especialista em bandeiras!';
-    if (_percentage >= 0.7) return 'Muito bom! Você conhece bem as bandeiras!';
-    if (_percentage >= 0.5) return 'Bom! Continue praticando!';
-    if (_percentage >= 0.3) return 'Razoável. Que tal tentar novamente?';
-    return 'Continue estudando as bandeiras do mundo!';
-  }
 
   @override
   Widget build(BuildContext context) {
+    if (_selectedLanguage == null) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -109,7 +122,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                 
                 // Título
                 Text(
-                  'Fim de Jogo!',
+                  UITranslationService.translate('game_over_title', _selectedLanguage!),
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -120,7 +133,11 @@ class _GameOverScreenState extends State<GameOverScreen> {
                 
                 // Pontuação
                 Text(
-                  '${widget.score}/${widget.totalQuestions}',
+                  UITranslationService.translateWithParams(
+                    'game_over_score',
+                    _selectedLanguage!,
+                    {'score': widget.score.toString()},
+                  ),
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -150,7 +167,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     ),
                   ),
                   child: Text(
-                    _message,
+                    UITranslationService.translate('game_over_message', _selectedLanguage!),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Colors.white,
@@ -163,7 +180,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                 
                 // Botões
                 _buildActionButton(
-                  'Jogar Novamente',
+                  UITranslationService.translate('play_again_button', _selectedLanguage!),
                   Icons.replay,
                   () => Navigator.pushReplacement(
                     context,
@@ -176,7 +193,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                 const SizedBox(height: 16),
                 
                 _buildActionButton(
-                  'Menu Principal',
+                  UITranslationService.translate('back_to_menu_button', _selectedLanguage!),
                   Icons.home,
                   () => Navigator.pushAndRemoveUntil(
                     context,
