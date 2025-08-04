@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import '../models/country.dart';
 import '../models/game_state.dart';
 import '../models/language.dart';
-import '../services/country_service.dart';
+import '../services/flags_service.dart';
 import '../services/language_service.dart';
 import '../services/ui_translation_service.dart';
 import '../widgets/animated_option_button.dart';
+import '../widgets/flag_image.dart';
 import 'game_over_screen.dart';
 
 class GameScreen extends StatefulWidget {
@@ -42,7 +43,9 @@ class _GameScreenState extends State<GameScreen> {
         _selectedLanguage = selectedLanguage;
       });
 
-      final countries = await CountryService.getRandomCountries(50);
+      // Carregar dados das bandeiras e obter países
+      await FlagsService.loadFlagsData();
+      final countries = FlagsService.getRandomCountries(50);
       final gameCountries = countries.take(10).toList();
 
       setState(() {
@@ -279,32 +282,8 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image.network(
-                        _gameState!.currentCountry!.flagUrl,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.flag,
-                                      size: 64, color: Colors.white),
-                                  const SizedBox(height: 16),
-                                  Text(
-                                    UITranslationService.translate(
-                                        'error_message', _selectedLanguage!),
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+                      child: FlagImage(
+                        flagUrl: _gameState!.currentCountry!.flagUrl,
                       ),
                     ),
                   ),

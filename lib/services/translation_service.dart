@@ -47,4 +47,15 @@ class TranslationService {
     // Se não encontrar tradução, retorna o nome original
     return englishName;
   }
+
+  /// Obtém o nome do país pelo código em português
+  static String getCountryNameByCode(String countryCode) {
+    final translations = _translations['pt'];
+    if (translations != null && translations.containsKey(countryCode)) {
+      return translations[countryCode]!;
+    }
+
+    // Se não encontrar tradução, retorna o código
+    return countryCode;
+  }
 }
