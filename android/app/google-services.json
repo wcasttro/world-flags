@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "108149575815",
+    "project_id": "word-flags",
+    "storage_bucket": "word-flags.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108149575815:android:97c0cd3ac70792eb4ba822",
+        "android_client_info": {
+          "package_name": "br.com.wcastro.world_flags"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzCga9weTGldOjwO9V4r6v29v6mvkquA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

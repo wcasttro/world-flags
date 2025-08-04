@@ -8,6 +8,7 @@ import '../models/language.dart';
 import '../services/flags_service.dart';
 import '../services/language_service.dart';
 import '../services/ui_translation_service.dart';
+import '../utils/admob.dart';
 import '../widgets/animated_option_button.dart';
 import '../widgets/flag_image.dart';
 import 'game_over_screen.dart';
@@ -24,11 +25,29 @@ class _GameScreenState extends State<GameScreen> {
   bool _isLoading = true;
   String? _error;
   Language? _selectedLanguage;
+  late AdMod _adMod;
 
   @override
   void initState() {
     super.initState();
+    _initializeAdMod();
     _initializeGame();
+  }
+
+  void _initializeAdMod() {
+    // IDs de teste do AdMob - substitua pelos seus IDs reais
+    _adMod = AdMod(
+      bannerIdAdMob:
+          'ca-app-pub-3940256099942544/6300978111', // Banner de teste
+      interstitialAdMob:
+          'ca-app-pub-3940256099942544/1033173712', // Interstitial de teste
+    );
+    _adMod.createBannerAd();
+    _adMod.createInterstitialAd();
+  }
+
+  void _showInterstitialAd() {
+    _adMod.showInterstitialAd();
   }
 
   Future<void> _initializeGame() async {
@@ -147,6 +166,9 @@ class _GameScreenState extends State<GameScreen> {
     if (_gameState == null) return;
 
     if (_gameState!.isGameOver) {
+      // Mostrar interstitial ad antes de ir para a tela de conclusão
+      _showInterstitialAd();
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -305,6 +327,13 @@ class _GameScreenState extends State<GameScreen> {
                 // Opções
                 ..._gameState!.options
                     .map((option) => _buildOptionButton(option)),
+
+                const SizedBox(height: 16),
+
+                // Banner Ad
+                Center(
+                  child: _adMod.banner(),
+                ),
               ],
             ),
           ),
