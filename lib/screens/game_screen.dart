@@ -71,6 +71,17 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _loadNextQuestion() {
+    if (_gameState!.isGameOver) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GameOverScreen(
+            score: _gameState!.score,
+            totalQuestions: _gameState!.totalQuestions,
+          ),
+        ),
+      );
+    }
     if (_gameState == null ||
         _gameState!.isGameOver ||
         _selectedLanguage == null) return;
