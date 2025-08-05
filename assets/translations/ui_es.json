@@ -53,5 +53,19 @@
   "tutorial_step3": "3. Acumula puntos para subir en la clasificación",
   "tutorial_skip": "Saltar Tutorial",
   "tutorial_next": "Siguiente",
-  "tutorial_finish": "Comenzar a Jugar"
+  "tutorial_finish": "Comenzar a Jugar",
+  "error_review_title": "Revisar Errores",
+  "error_review_subtitle": "Ve tus errores anteriores",
+  "no_errors_title": "¡Sin Errores!",
+  "no_errors_message": "¡Felicitaciones! No tienes errores para revisar. ¡Sigue jugando para mejorar aún más!",
+  "total_errors": "Total de Errores",
+  "unique_countries": "Países Únicos",
+  "your_answer": "Tu respuesta",
+  "correct_answer": "Respuesta correcta",
+  "clear_errors": "Limpiar Errores",
+  "clear_errors_title": "Limpiar Historial",
+  "clear_errors_message": "¿Estás seguro de que quieres limpiar todo el historial de errores? Esta acción no se puede deshacer.",
+  "clear": "Limpiar",
+  "cancel": "Cancelar",
+  "review_errors_button": "Revisar Errores"
 } 

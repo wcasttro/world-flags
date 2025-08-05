@@ -1,4 +1,5 @@
 import 'country.dart';
+import 'user_error.dart';
 
 class GameState {
   final int currentQuestion;
@@ -9,6 +10,7 @@ class GameState {
   final List<String> options;
   final bool isAnswered;
   final bool isCorrect;
+  final List<UserError> errors;
 
   GameState({
     required this.currentQuestion,
@@ -19,6 +21,7 @@ class GameState {
     required this.options,
     required this.isAnswered,
     required this.isCorrect,
+    required this.errors,
   });
 
   GameState copyWith({
@@ -30,6 +33,7 @@ class GameState {
     List<String>? options,
     bool? isAnswered,
     bool? isCorrect,
+    List<UserError>? errors,
   }) {
     return GameState(
       currentQuestion: currentQuestion ?? this.currentQuestion,
@@ -40,9 +44,10 @@ class GameState {
       options: options ?? this.options,
       isAnswered: isAnswered ?? this.isAnswered,
       isCorrect: isCorrect ?? this.isCorrect,
+      errors: errors ?? this.errors,
     );
   }
 
   bool get isGameOver => currentQuestion >= totalQuestions;
   double get progress => currentQuestion / totalQuestions;
-} 
+}

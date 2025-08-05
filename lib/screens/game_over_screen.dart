@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/language.dart';
 import '../services/language_service.dart';
 import '../services/ui_translation_service.dart';
-import 'home_screen.dart';
+import 'error_review_screen.dart';
 import 'game_screen.dart';
+import 'home_screen.dart';
 
 class GameOverScreen extends StatefulWidget {
   final int score;
@@ -46,9 +48,10 @@ class _GameOverScreenState extends State<GameOverScreen> {
     try {
       final prefs = await SharedPreferences.getInstance();
       final scores = prefs.getStringList('scores') ?? [];
-      final newScore = '${widget.score}_${DateTime.now().millisecondsSinceEpoch}';
+      final newScore =
+          '${widget.score}_${DateTime.now().millisecondsSinceEpoch}';
       scores.add(newScore);
-      
+
       // Manter apenas os 10 melhores scores
       if (scores.length > 10) {
         scores.sort((a, b) {
@@ -58,7 +61,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
         });
         scores.removeRange(10, scores.length);
       }
-      
+
       await prefs.setStringList('scores', scores);
     } catch (e) {
       // Ignorar erros de salvamento
@@ -117,20 +120,21 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     color: Colors.white,
                   ),
                 ),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Título
                 Text(
-                  UITranslationService.translate('game_over_title', _selectedLanguage!),
+                  UITranslationService.translate(
+                      'game_over_title', _selectedLanguage!),
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Pontuação
                 Text(
                   UITranslationService.translateWithParams(
@@ -139,23 +143,23 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     {'score': widget.score.toString()},
                   ),
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-                
+
                 const SizedBox(height: 8),
-                
+
                 // Porcentagem
                 Text(
                   '${(_percentage * 100).toInt()}%',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: Colors.white.withOpacity(0.8),
-                  ),
+                        color: Colors.white.withOpacity(0.8),
+                      ),
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Mensagem
                 Container(
                   padding: const EdgeInsets.all(16),
@@ -167,20 +171,22 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     ),
                   ),
                   child: Text(
-                    UITranslationService.translate('game_over_message', _selectedLanguage!),
+                    UITranslationService.translate(
+                        'game_over_message', _selectedLanguage!),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Botões
                 _buildActionButton(
-                  UITranslationService.translate('play_again_button', _selectedLanguage!),
+                  UITranslationService.translate(
+                      'play_again_button', _selectedLanguage!),
                   Icons.replay,
                   () => Navigator.pushReplacement(
                     context,
@@ -189,11 +195,26 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 _buildActionButton(
-                  UITranslationService.translate('back_to_menu_button', _selectedLanguage!),
+                  UITranslationService.translate(
+                      'review_errors_button', _selectedLanguage!),
+                  Icons.assignment,
+                  () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ErrorReviewScreen(),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                _buildActionButton(
+                  UITranslationService.translate(
+                      'back_to_menu_button', _selectedLanguage!),
                   Icons.home,
                   () => Navigator.pushAndRemoveUntil(
                     context,
@@ -203,7 +224,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     (route) => false,
                   ),
                 ),
-                
+
                 if (_isSaving) ...[
                   const SizedBox(height: 24),
                   const CircularProgressIndicator(
@@ -218,7 +239,8 @@ class _GameOverScreenState extends State<GameOverScreen> {
     );
   }
 
-  Widget _buildActionButton(String text, IconData icon, VoidCallback onPressed) {
+  Widget _buildActionButton(
+      String text, IconData icon, VoidCallback onPressed) {
     return SizedBox(
       width: double.infinity,
       height: 56,
@@ -253,4 +275,4 @@ class _GameOverScreenState extends State<GameOverScreen> {
       ),
     );
   }
-} 
+}

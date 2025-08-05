@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../models/country.dart';
 import '../models/game_state.dart';
 import '../models/language.dart';
+import '../models/user_error.dart';
+import '../services/error_review_service.dart';
 import '../services/flags_service.dart';
 import '../services/language_service.dart';
 import '../services/ui_translation_service.dart';
@@ -79,6 +81,7 @@ class _GameScreenState extends State<GameScreen> {
           options: [],
           isAnswered: false,
           isCorrect: false,
+          errors: [],
         );
         _isLoading = false;
       });
@@ -149,13 +152,38 @@ class _GameScreenState extends State<GameScreen> {
     final isCorrect = selectedAnswer == correctAnswer;
     final newScore = _gameState!.score + (isCorrect ? 1 : 0);
 
-    setState(() {
-      _gameState = _gameState!.copyWith(
-        score: newScore,
-        isAnswered: true,
-        isCorrect: isCorrect,
+    // Salvar erro se a resposta estiver incorreta
+    if (!isCorrect) {
+      final error = UserError(
+        country: _gameState!.currentCountry!,
+        userAnswer: selectedAnswer,
+        correctAnswer: correctAnswer,
+        timestamp: DateTime.now(),
       );
-    });
+
+      // Salvar erro no serviço
+      ErrorReviewService.saveError(error);
+
+      // Adicionar erro à lista do jogo
+      final newErrors = List<UserError>.from(_gameState!.errors)..add(error);
+
+      setState(() {
+        _gameState = _gameState!.copyWith(
+          score: newScore,
+          isAnswered: true,
+          isCorrect: isCorrect,
+          errors: newErrors,
+        );
+      });
+    } else {
+      setState(() {
+        _gameState = _gameState!.copyWith(
+          score: newScore,
+          isAnswered: true,
+          isCorrect: isCorrect,
+        );
+      });
+    }
 
     // Aguardar um pouco antes de ir para próxima pergunta
     Future.delayed(const Duration(seconds: 2), () {

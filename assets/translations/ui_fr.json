@@ -53,5 +53,19 @@
   "tutorial_step3": "3. Accumulez des points pour monter au classement",
   "tutorial_skip": "Passer le Tutoriel",
   "tutorial_next": "Suivant",
-  "tutorial_finish": "Commencer à Jouer"
+  "tutorial_finish": "Commencer à Jouer",
+  "error_review_title": "Revoir les Erreurs",
+  "error_review_subtitle": "Voir vos erreurs précédentes",
+  "no_errors_title": "Aucune Erreur !",
+  "no_errors_message": "Félicitations ! Vous n'avez pas d'erreurs à revoir. Continuez à jouer pour vous améliorer encore plus !",
+  "total_errors": "Total d'Erreurs",
+  "unique_countries": "Pays Uniques",
+  "your_answer": "Votre réponse",
+  "correct_answer": "Réponse correcte",
+  "clear_errors": "Effacer les Erreurs",
+  "clear_errors_title": "Effacer l'Historique",
+  "clear_errors_message": "Êtes-vous sûr de vouloir effacer tout l'historique des erreurs ? Cette action ne peut pas être annulée.",
+  "clear": "Effacer",
+  "cancel": "Annuler",
+  "review_errors_button": "Revoir les Errores"
 } 

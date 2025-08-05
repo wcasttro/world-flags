@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../models/language.dart';
 import '../services/language_service.dart';
 import '../services/ui_translation_service.dart';
+import 'error_review_screen.dart';
 import 'game_screen.dart';
-import 'leaderboard_screen.dart';
 import 'language_screen.dart';
+import 'leaderboard_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,30 +80,34 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        UITranslationService.translate('home_title', _selectedLanguage!),
-                        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        UITranslationService.translate(
+                            'home_title', _selectedLanguage!),
+                        style:
+                            Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        UITranslationService.translate('home_subtitle', _selectedLanguage!),
+                        UITranslationService.translate(
+                            'home_subtitle', _selectedLanguage!),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
-                        ),
+                              color: Colors.white.withOpacity(0.9),
+                            ),
                       ),
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 60),
-                
+
                 // Botões do menu
                 _buildMenuButton(
                   context,
-                  UITranslationService.translate('play_button', _selectedLanguage!),
+                  UITranslationService.translate(
+                      'play_button', _selectedLanguage!),
                   Icons.play_arrow,
                   () => Navigator.push(
                     context,
@@ -110,12 +116,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 _buildMenuButton(
                   context,
-                  UITranslationService.translate('leaderboard_button', _selectedLanguage!),
+                  UITranslationService.translate(
+                      'leaderboard_button', _selectedLanguage!),
                   Icons.leaderboard,
                   () => Navigator.push(
                     context,
@@ -124,12 +131,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 _buildMenuButton(
                   context,
-                  UITranslationService.translate('language_button', _selectedLanguage!),
+                  UITranslationService.translate(
+                      'language_button', _selectedLanguage!),
                   Icons.language,
                   () => Navigator.push(
                     context,
@@ -138,12 +146,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 _buildMenuButton(
                   context,
-                  UITranslationService.translate('about_button', _selectedLanguage!),
+                  UITranslationService.translate(
+                      'review_errors_button', _selectedLanguage!),
+                  Icons.assignment,
+                  () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ErrorReviewScreen(),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                _buildMenuButton(
+                  context,
+                  UITranslationService.translate(
+                      'about_button', _selectedLanguage!),
                   Icons.info,
                   () => _showAboutDialog(context),
                 ),
@@ -200,17 +224,20 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(UITranslationService.translate('about_title', _selectedLanguage!)),
+        title: Text(
+            UITranslationService.translate('about_title', _selectedLanguage!)),
         content: Text(
-          UITranslationService.translate('about_description', _selectedLanguage!),
+          UITranslationService.translate(
+              'about_description', _selectedLanguage!),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text(UITranslationService.translate('confirm_button', _selectedLanguage!)),
+            child: Text(UITranslationService.translate(
+                'confirm_button', _selectedLanguage!)),
           ),
         ],
       ),
     );
   }
-} 
+}

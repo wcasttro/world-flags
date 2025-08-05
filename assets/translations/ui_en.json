@@ -53,5 +53,19 @@
   "tutorial_step3": "3. Accumulate points to climb the leaderboard",
   "tutorial_skip": "Skip Tutorial",
   "tutorial_next": "Next",
-  "tutorial_finish": "Start Playing"
+  "tutorial_finish": "Start Playing",
+  "error_review_title": "Review Errors",
+  "error_review_subtitle": "See your previous errors",
+  "no_errors_title": "No Errors!",
+  "no_errors_message": "Congratulations! You have no errors to review. Keep playing to improve even more!",
+  "total_errors": "Total Errors",
+  "unique_countries": "Unique Countries",
+  "your_answer": "Your answer",
+  "correct_answer": "Correct answer",
+  "clear_errors": "Clear Errors",
+  "clear_errors_title": "Clear History",
+  "clear_errors_message": "Are you sure you want to clear all error history? This action cannot be undone.",
+  "clear": "Clear",
+  "cancel": "Cancel",
+  "review_errors_button": "Review Errors"
 } 
