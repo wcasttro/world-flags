@@ -7,6 +7,7 @@ import '../models/country_hint.dart';
 import '../models/game_state.dart';
 import '../models/language.dart';
 import '../models/user_error.dart';
+import '../services/crashlytics_service.dart';
 import '../services/error_review_service.dart';
 import '../services/flags_service.dart';
 import '../services/hint_service.dart';
@@ -69,9 +70,37 @@ class _GameScreenState extends State<GameScreen> {
         _selectedLanguage = selectedLanguage;
       });
 
+      // Log da seleção de idioma no Crashlytics
+      CrashlyticsService.logLanguageSelection(selectedLanguage.code);
+
       // Carregar dados das bandeiras e dicas
-      await FlagsService.loadFlagsData();
-      await HintService.loadHintsData();
+      try {
+        await FlagsService.loadFlagsData();
+        CrashlyticsService.logDataLoading(
+          dataType: 'flags_data',
+          success: true,
+        );
+      } catch (e) {
+        CrashlyticsService.logDataLoading(
+          dataType: 'flags_data',
+          success: false,
+          error: e.toString(),
+        );
+      }
+
+      try {
+        await HintService.loadHintsData();
+        CrashlyticsService.logDataLoading(
+          dataType: 'hints_data',
+          success: true,
+        );
+      } catch (e) {
+        CrashlyticsService.logDataLoading(
+          dataType: 'hints_data',
+          success: false,
+          error: e.toString(),
+        );
+      }
 
       final countries = FlagsService.getRandomCountries(50);
       final gameCountries = countries.take(10).toList();
@@ -92,6 +121,10 @@ class _GameScreenState extends State<GameScreen> {
 
       _loadNextQuestion();
     } catch (e) {
+      // Log do erro no Crashlytics
+      CrashlyticsService.recordError(e, StackTrace.current,
+          reason: 'Game initialization error');
+
       setState(() {
         _error = e.toString();
         _isLoading = false;
@@ -168,6 +201,13 @@ class _GameScreenState extends State<GameScreen> {
       // Salvar erro no serviço
       ErrorReviewService.saveError(error);
 
+      // Log do erro no Crashlytics
+      CrashlyticsService.logUserError(
+        countryCode: _gameState!.currentCountry!.code,
+        userAnswer: selectedAnswer,
+        correctAnswer: correctAnswer,
+      );
+
       // Adicionar erro à lista do jogo
       final newErrors = List<UserError>.from(_gameState!.errors)..add(error);
 
@@ -188,6 +228,15 @@ class _GameScreenState extends State<GameScreen> {
         );
       });
     }
+
+    // Log da ação do jogo no Crashlytics
+    CrashlyticsService.logGameInfo(
+      action: 'answer_question',
+      countryCode: _gameState!.currentCountry!.code,
+      isCorrect: isCorrect,
+      score: newScore,
+      totalQuestions: _gameState!.totalQuestions,
+    );
 
     // Aguardar um pouco antes de ir para próxima pergunta
     Future.delayed(const Duration(seconds: 2), () {
@@ -415,6 +464,11 @@ class _GameScreenState extends State<GameScreen> {
       child: ElevatedButton.icon(
         onPressed: hasHint
             ? () {
+                // Log do uso de dica no Crashlytics
+                CrashlyticsService.logHintUsage(
+                  countryCode: countryCode,
+                  hintType: 'full_hint',
+                );
                 _showHintBottomSheet(hint);
               }
             : null,

@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/country.dart';
 import '../models/user_error.dart';
+import '../services/crashlytics_service.dart';
 import '../services/flags_service.dart';
 
 class ErrorReviewService {
@@ -24,8 +25,14 @@ class ErrorReviewService {
       }
 
       await prefs.setStringList(_errorsKey, errorsJson);
+
+      // Log do erro salvo no Crashlytics
+      CrashlyticsService.log(
+          'Error saved to local storage: ${error.country.code}');
     } catch (e) {
-      // Ignorar erros de salvamento
+      // Log do erro de salvamento no Crashlytics
+      CrashlyticsService.recordError(e, StackTrace.current,
+          reason: 'Error saving user error');
     }
   }
 
@@ -64,8 +71,14 @@ class ErrorReviewService {
       // Ordenar por timestamp (mais recentes primeiro)
       errors.sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
+      // Log do carregamento de erros no Crashlytics
+      CrashlyticsService.log(
+          'Loaded ${errors.length} user errors from local storage');
       return errors;
     } catch (e) {
+      // Log do erro de carregamento no Crashlytics
+      CrashlyticsService.recordError(e, StackTrace.current,
+          reason: 'Error loading user errors');
       return [];
     }
   }
@@ -75,8 +88,13 @@ class ErrorReviewService {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_errorsKey);
+
+      // Log da limpeza de erros no Crashlytics
+      CrashlyticsService.log('User errors cleared from local storage');
     } catch (e) {
-      // Ignorar erros
+      // Log do erro de limpeza no Crashlytics
+      CrashlyticsService.recordError(e, StackTrace.current,
+          reason: 'Error clearing user errors');
     }
   }
 
