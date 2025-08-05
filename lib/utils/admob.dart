@@ -6,6 +6,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 class AdMod {
   BannerAd? _bannerAd;
   InterstitialAd? _interstitialAd;
+  bool _isBannerAdLoaded = false;
 
   final String bannerIdAdMob;
   final String interstitialAdMob;
@@ -17,8 +18,11 @@ class AdMod {
       size: AdSize.banner,
       adUnitId: bannerIdAdMob,
       listener: BannerAdListener(
-        onAdLoaded: (Ad ad) {},
+        onAdLoaded: (Ad ad) {
+          _isBannerAdLoaded = true;
+        },
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          _isBannerAdLoaded = false;
           ad.dispose();
         },
         onAdOpened: (Ad ad) => log('$BannerAd onAdOpened.'),
@@ -29,13 +33,14 @@ class AdMod {
   }
 
   Widget banner() {
-    return Visibility(
-      visible: _bannerAd != null,
-      child: SizedBox(
-        height: _bannerAd!.size.height.toDouble(),
-        width: _bannerAd!.size.width.toDouble(),
-        child: AdWidget(ad: _bannerAd!),
-      ),
+    if (_bannerAd == null || !_isBannerAdLoaded) {
+      return const SizedBox.shrink();
+    }
+
+    return SizedBox(
+      height: _bannerAd!.size.height.toDouble(),
+      width: _bannerAd!.size.width.toDouble(),
+      child: AdWidget(ad: _bannerAd!),
     );
   }
 

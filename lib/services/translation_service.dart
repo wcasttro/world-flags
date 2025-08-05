@@ -27,6 +27,11 @@ class TranslationService {
       final frTranslations = Map<String, String>.from(json.decode(frData));
       _translations['fr'] = frTranslations;
 
+      // Carrega traduções em inglês
+      final enData = await rootBundle.loadString('assets/translations/en.json');
+      final enTranslations = Map<String, String>.from(json.decode(enData));
+      _translations['en'] = enTranslations;
+
       _isInitialized = true;
     } catch (e) {
       // Ignorar erros de carregamento de traduções
@@ -34,11 +39,10 @@ class TranslationService {
   }
 
   static String translateCountryName(
-      String englishName, Language language, String countryCode) {
-    if (language.code == 'en') {
-      return englishName; // Inglês é o idioma padrão
-    }
-
+    String englishName,
+    Language language,
+    String countryCode,
+  ) {
     final translations = _translations[language.code];
     if (translations != null && translations.containsKey(countryCode)) {
       return translations[countryCode]!;

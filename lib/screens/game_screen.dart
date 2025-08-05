@@ -30,17 +30,20 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeAdMod();
+
     _initializeGame();
   }
 
+  @override
+  void didChangeDependencies() {
+    _initializeAdMod();
+    super.didChangeDependencies();
+  }
+
   void _initializeAdMod() {
-    // IDs de teste do AdMob - substitua pelos seus IDs reais
     _adMod = AdMod(
-      bannerIdAdMob:
-          'ca-app-pub-3940256099942544/6300978111', // Banner de teste
-      interstitialAdMob:
-          'ca-app-pub-3940256099942544/1033173712', // Interstitial de teste
+      bannerIdAdMob: 'ca-app-pub-7971613376829432/6844840799',
+      interstitialAdMob: 'ca-app-pub-7971613376829432/4829067459',
     );
     _adMod.createBannerAd();
     _adMod.createInterstitialAd();
