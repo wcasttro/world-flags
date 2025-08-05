@@ -19,12 +19,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-    // Inicializar Crashlytics Service primeiro
+  // Inicializar Crashlytics Service primeiro
   CrashlyticsService.initialize();
-  
-  // Aguardar um pouco para garantir que o Crashlytics esteja inicializado
-  await Future.delayed(const Duration(milliseconds: 100));
-  
+
   // Configurar Crashlytics após inicialização
   try {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
