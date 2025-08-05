@@ -67,5 +67,16 @@
   "clear_errors_message": "Êtes-vous sûr de vouloir effacer tout l'historique des erreurs ? Cette action ne peut pas être annulée.",
   "clear": "Effacer",
   "cancel": "Annuler",
-  "review_errors_button": "Revoir les Errores"
+  "review_errors_button": "Revoir les Errores",
+  "hint_title": "Indice",
+  "continent_label": "Continent",
+  "languages_label": "Langues",
+  "capital_label": "Capitale",
+  "population_label": "Population",
+  "currency_label": "Devise",
+  "show_hint_button": "Afficher l'Indice",
+  "hide_hint_button": "Masquer l'Indice",
+  "hint_available": "Indice Disponible",
+  "hint_not_available": "Aucun Indice Disponible",
+  "close": "Fermer"
 } 

@@ -1,0 +1,870 @@
+{
+  "BR": {
+    "continent": "América do Sul",
+    "languages": ["Português"],
+    "capital": "Brasília",
+    "population": 214300000,
+    "currency": "Real (BRL)"
+  },
+  "US": {
+    "continent": "América do Norte",
+    "languages": ["Inglês"],
+    "capital": "Washington, D.C.",
+    "population": 331900000,
+    "currency": "Dólar Americano (USD)"
+  },
+  "GB": {
+    "continent": "Europa",
+    "languages": ["Inglês"],
+    "capital": "Londres",
+    "population": 67200000,
+    "currency": "Libra Esterlina (GBP)"
+  },
+  "FR": {
+    "continent": "Europa",
+    "languages": ["Francês"],
+    "capital": "Paris",
+    "population": 67390000,
+    "currency": "Euro (EUR)"
+  },
+  "DE": {
+    "continent": "Europa",
+    "languages": ["Alemão"],
+    "capital": "Berlim",
+    "population": 83190000,
+    "currency": "Euro (EUR)"
+  },
+  "IT": {
+    "continent": "Europa",
+    "languages": ["Italiano"],
+    "capital": "Roma",
+    "population": 60360000,
+    "currency": "Euro (EUR)"
+  },
+  "ES": {
+    "continent": "Europa",
+    "languages": ["Espanhol", "Catalão", "Basco", "Galego"],
+    "capital": "Madrid",
+    "population": 47350000,
+    "currency": "Euro (EUR)"
+  },
+  "PT": {
+    "continent": "Europa",
+    "languages": ["Português"],
+    "capital": "Lisboa",
+    "population": 10280000,
+    "currency": "Euro (EUR)"
+  },
+  "AR": {
+    "continent": "América do Sul",
+    "languages": ["Espanhol"],
+    "capital": "Buenos Aires",
+    "population": 45196000,
+    "currency": "Peso Argentino (ARS)"
+  },
+  "MX": {
+    "continent": "América do Norte",
+    "languages": ["Espanhol"],
+    "capital": "Cidade do México",
+    "population": 128900000,
+    "currency": "Peso Mexicano (MXN)"
+  },
+  "CA": {
+    "continent": "América do Norte",
+    "languages": ["Inglês", "Francês"],
+    "capital": "Ottawa",
+    "population": 38000000,
+    "currency": "Dólar Canadense (CAD)"
+  },
+  "AU": {
+    "continent": "Oceania",
+    "languages": ["Inglês"],
+    "capital": "Canberra",
+    "population": 25690000,
+    "currency": "Dólar Australiano (AUD)"
+  },
+  "JP": {
+    "continent": "Ásia",
+    "languages": ["Japonês"],
+    "capital": "Tóquio",
+    "population": 125700000,
+    "currency": "Iene (JPY)"
+  },
+  "CN": {
+    "continent": "Ásia",
+    "languages": ["Chinês Mandarim"],
+    "capital": "Pequim",
+    "population": 1439000000,
+    "currency": "Yuan (CNY)"
+  },
+  "IN": {
+    "continent": "Ásia",
+    "languages": ["Hindi", "Inglês"],
+    "capital": "Nova Delhi",
+    "population": 1380000000,
+    "currency": "Rupia Indiana (INR)"
+  },
+  "RU": {
+    "continent": "Europa/Ásia",
+    "languages": ["Russo"],
+    "capital": "Moscou",
+    "population": 144100000,
+    "currency": "Rublo Russo (RUB)"
+  },
+  "KR": {
+    "continent": "Ásia",
+    "languages": ["Coreano"],
+    "capital": "Seul",
+    "population": 51270000,
+    "currency": "Won Sul-Coreano (KRW)"
+  },
+  "NL": {
+    "continent": "Europa",
+    "languages": ["Holandês"],
+    "capital": "Amsterdã",
+    "population": 17130000,
+    "currency": "Euro (EUR)"
+  },
+  "BE": {
+    "continent": "Europa",
+    "languages": ["Holandês", "Francês", "Alemão"],
+    "capital": "Bruxelas",
+    "population": 11590000,
+    "currency": "Euro (EUR)"
+  },
+  "CH": {
+    "continent": "Europa",
+    "languages": ["Alemão", "Francês", "Italiano", "Romanche"],
+    "capital": "Berna",
+    "population": 8650000,
+    "currency": "Franco Suíço (CHF)"
+  },
+  "AT": {
+    "continent": "Europa",
+    "languages": ["Alemão"],
+    "capital": "Viena",
+    "population": 9006000,
+    "currency": "Euro (EUR)"
+  },
+  "SE": {
+    "continent": "Europa",
+    "languages": ["Sueco"],
+    "capital": "Estocolmo",
+    "population": 10350000,
+    "currency": "Coroa Sueca (SEK)"
+  },
+  "NO": {
+    "continent": "Europa",
+    "languages": ["Norueguês"],
+    "capital": "Oslo",
+    "population": 5425000,
+    "currency": "Coroa Norueguesa (NOK)"
+  },
+  "DK": {
+    "continent": "Europa",
+    "languages": ["Dinamarquês"],
+    "capital": "Copenhague",
+    "population": 5823000,
+    "currency": "Coroa Dinamarquesa (DKK)"
+  },
+  "FI": {
+    "continent": "Europa",
+    "languages": ["Finlandês", "Sueco"],
+    "capital": "Helsinque",
+    "population": 5536000,
+    "currency": "Euro (EUR)"
+  },
+  "PL": {
+    "continent": "Europa",
+    "languages": ["Polonês"],
+    "capital": "Varsóvia",
+    "population": 37850000,
+    "currency": "Złoty (PLN)"
+  },
+  "CZ": {
+    "continent": "Europa",
+    "languages": ["Tcheco"],
+    "capital": "Praga",
+    "population": 10690000,
+    "currency": "Coroa Tcheca (CZK)"
+  },
+  "HU": {
+    "continent": "Europa",
+    "languages": ["Húngaro"],
+    "capital": "Budapeste",
+    "population": 9660000,
+    "currency": "Forint (HUF)"
+  },
+  "RO": {
+    "continent": "Europa",
+    "languages": ["Romeno"],
+    "capital": "Bucareste",
+    "population": 19240000,
+    "currency": "Leu Romeno (RON)"
+  },
+  "BG": {
+    "continent": "Europa",
+    "languages": ["Búlgaro"],
+    "capital": "Sófia",
+    "population": 6948000,
+    "currency": "Lev (BGN)"
+  },
+  "GR": {
+    "continent": "Europa",
+    "languages": ["Grego"],
+    "capital": "Atenas",
+    "population": 10420000,
+    "currency": "Euro (EUR)"
+  },
+  "TR": {
+    "continent": "Europa/Ásia",
+    "languages": ["Turco"],
+    "capital": "Ancara",
+    "population": 84340000,
+    "currency": "Lira Turca (TRY)"
+  },
+  "UA": {
+    "continent": "Europa",
+    "languages": ["Ucraniano"],
+    "capital": "Kiev",
+    "population": 44130000,
+    "currency": "Hryvnia (UAH)"
+  },
+  "BY": {
+    "continent": "Europa",
+    "languages": ["Bielorrusso", "Russo"],
+    "capital": "Minsk",
+    "population": 9452000,
+    "currency": "Rublo Bielorrusso (BYN)"
+  },
+  "LT": {
+    "continent": "Europa",
+    "languages": ["Lituano"],
+    "capital": "Vilnius",
+    "population": 2798000,
+    "currency": "Euro (EUR)"
+  },
+  "LV": {
+    "continent": "Europa",
+    "languages": ["Letão"],
+    "capital": "Riga",
+    "population": 1907000,
+    "currency": "Euro (EUR)"
+  },
+  "EE": {
+    "continent": "Europa",
+    "languages": ["Estoniano"],
+    "capital": "Tallinn",
+    "population": 1328000,
+    "currency": "Euro (EUR)"
+  },
+  "SK": {
+    "continent": "Europa",
+    "languages": ["Eslovaco"],
+    "capital": "Bratislava",
+    "population": 5460000,
+    "currency": "Euro (EUR)"
+  },
+  "SI": {
+    "continent": "Europa",
+    "languages": ["Esloveno"],
+    "capital": "Liubliana",
+    "population": 2078000,
+    "currency": "Euro (EUR)"
+  },
+  "HR": {
+    "continent": "Europa",
+    "languages": ["Croata"],
+    "capital": "Zagreb",
+    "population": 4089000,
+    "currency": "Euro (EUR)"
+  },
+  "RS": {
+    "continent": "Europa",
+    "languages": ["Sérvio"],
+    "capital": "Belgrado",
+    "population": 6908000,
+    "currency": "Dinar Sérvio (RSD)"
+  },
+  "BA": {
+    "continent": "Europa",
+    "languages": ["Bósnio", "Croata", "Sérvio"],
+    "capital": "Sarajevo",
+    "population": 3281000,
+    "currency": "Marco Conversível (BAM)"
+  },
+  "ME": {
+    "continent": "Europa",
+    "languages": ["Montenegrino"],
+    "capital": "Podgorica",
+    "population": 621000,
+    "currency": "Euro (EUR)"
+  },
+  "AL": {
+    "continent": "Europa",
+    "languages": ["Albanês"],
+    "capital": "Tirana",
+    "population": 2877000,
+    "currency": "Lek (ALL)"
+  },
+  "MK": {
+    "continent": "Europa",
+    "languages": ["Macedônio"],
+    "capital": "Skopje",
+    "population": 2083000,
+    "currency": "Denar (MKD)"
+  },
+  "XK": {
+    "continent": "Europa",
+    "languages": ["Albanês", "Sérvio"],
+    "capital": "Pristina",
+    "population": 1800000,
+    "currency": "Euro (EUR)"
+  },
+  "MD": {
+    "continent": "Europa",
+    "languages": ["Romeno"],
+    "capital": "Chisinau",
+    "population": 2618000,
+    "currency": "Leu Moldavo (MDL)"
+  },
+  "GE": {
+    "continent": "Ásia",
+    "languages": ["Georgiano"],
+    "capital": "Tbilisi",
+    "population": 3989000,
+    "currency": "Lari (GEL)"
+  },
+  "AM": {
+    "continent": "Ásia",
+    "languages": ["Armênio"],
+    "capital": "Erevan",
+    "population": 2963000,
+    "currency": "Dram (AMD)"
+  },
+  "AZ": {
+    "continent": "Ásia",
+    "languages": ["Azerbaijano"],
+    "capital": "Baku",
+    "population": 10140000,
+    "currency": "Manat (AZN)"
+  },
+  "KZ": {
+    "continent": "Ásia",
+    "languages": ["Cazaque", "Russo"],
+    "capital": "Nur-Sultan",
+    "population": 18780000,
+    "currency": "Tenge (KZT)"
+  },
+  "UZ": {
+    "continent": "Ásia",
+    "languages": ["Uzbeque"],
+    "capital": "Tashkent",
+    "population": 34200000,
+    "currency": "Som (UZS)"
+  },
+  "KG": {
+    "continent": "Ásia",
+    "languages": ["Quirguiz", "Russo"],
+    "capital": "Bishkek",
+    "population": 6524000,
+    "currency": "Som (KGS)"
+  },
+  "TJ": {
+    "continent": "Ásia",
+    "languages": ["Tajique", "Russo"],
+    "capital": "Dushanbe",
+    "population": 9538000,
+    "currency": "Somoni (TJS)"
+  },
+  "TM": {
+    "continent": "Ásia",
+    "languages": ["Turcomeno"],
+    "capital": "Ashgabat",
+    "population": 6342000,
+    "currency": "Manat (TMT)"
+  },
+  "MN": {
+    "continent": "Ásia",
+    "languages": ["Mongol"],
+    "capital": "Ulan Bator",
+    "population": 3278000,
+    "currency": "Tugrik (MNT)"
+  },
+  "KP": {
+    "continent": "Ásia",
+    "languages": ["Coreano"],
+    "capital": "Pyongyang",
+    "population": 25780000,
+    "currency": "Won Norte-Coreano (KPW)"
+  },
+  "VN": {
+    "continent": "Ásia",
+    "languages": ["Vietnamita"],
+    "capital": "Hanoi",
+    "population": 97340000,
+    "currency": "Dong (VND)"
+  },
+  "TH": {
+    "continent": "Ásia",
+    "languages": ["Tailandês"],
+    "capital": "Bangkok",
+    "population": 69799978,
+    "currency": "Baht (THB)"
+  },
+  "MM": {
+    "continent": "Ásia",
+    "languages": ["Birmanês"],
+    "capital": "Naypyidaw",
+    "population": 54410000,
+    "currency": "Kyat (MMK)"
+  },
+  "LA": {
+    "continent": "Ásia",
+    "languages": ["Laosiano"],
+    "capital": "Vientiane",
+    "population": 7276000,
+    "currency": "Kip (LAK)"
+  },
+  "KH": {
+    "continent": "Ásia",
+    "languages": ["Khmer"],
+    "capital": "Phnom Penh",
+    "population": 16720000,
+    "currency": "Riel (KHR)"
+  },
+  "MY": {
+    "continent": "Ásia",
+    "languages": ["Malaio", "Inglês"],
+    "capital": "Kuala Lumpur",
+    "population": 32730000,
+    "currency": "Ringgit (MYR)"
+  },
+  "SG": {
+    "continent": "Ásia",
+    "languages": ["Inglês", "Malaio", "Mandarim", "Tamil"],
+    "capital": "Singapura",
+    "population": 5850000,
+    "currency": "Dólar de Singapura (SGD)"
+  },
+  "ID": {
+    "continent": "Ásia",
+    "languages": ["Indonésio"],
+    "capital": "Jacarta",
+    "population": 273500000,
+    "currency": "Rupia Indonésia (IDR)"
+  },
+  "PH": {
+    "continent": "Ásia",
+    "languages": ["Filipino", "Inglês"],
+    "capital": "Manila",
+    "population": 109600000,
+    "currency": "Peso Filipino (PHP)"
+  },
+  "BN": {
+    "continent": "Ásia",
+    "languages": ["Malaio", "Inglês"],
+    "capital": "Bandar Seri Begawan",
+    "population": 437000,
+    "currency": "Dólar do Brunei (BND)"
+  },
+  "TL": {
+    "continent": "Ásia",
+    "languages": ["Tétum", "Português"],
+    "capital": "Dili",
+    "population": 1318000,
+    "currency": "Dólar Americano (USD)"
+  },
+  "PG": {
+    "continent": "Oceania",
+    "languages": ["Inglês", "Tok Pisin", "Hiri Motu"],
+    "capital": "Port Moresby",
+    "population": 8947000,
+    "currency": "Kina (PGK)"
+  },
+  "FJ": {
+    "continent": "Oceania",
+    "languages": ["Inglês", "Fijiano", "Hindi"],
+    "capital": "Suva",
+    "population": 896000,
+    "currency": "Dólar de Fiji (FJD)"
+  },
+  "NZ": {
+    "continent": "Oceania",
+    "languages": ["Inglês", "Maori"],
+    "capital": "Wellington",
+    "population": 5084000,
+    "currency": "Dólar da Nova Zelândia (NZD)"
+  },
+  "ZA": {
+    "continent": "África",
+    "languages": ["Afrikaans", "Inglês", "Zulu", "Xhosa"],
+    "capital": "Pretória",
+    "population": 59310000,
+    "currency": "Rand (ZAR)"
+  },
+  "EG": {
+    "continent": "África",
+    "languages": ["Árabe"],
+    "capital": "Cairo",
+    "population": 102300000,
+    "currency": "Libra Egípcia (EGP)"
+  },
+  "MA": {
+    "continent": "África",
+    "languages": ["Árabe", "Berbere"],
+    "capital": "Rabat",
+    "population": 36910000,
+    "currency": "Dirham (MAD)"
+  },
+  "DZ": {
+    "continent": "África",
+    "languages": ["Árabe", "Berbere"],
+    "capital": "Argel",
+    "population": 44620000,
+    "currency": "Dinar Argelino (DZD)"
+  },
+  "TN": {
+    "continent": "África",
+    "languages": ["Árabe"],
+    "capital": "Tunis",
+    "population": 11820000,
+    "currency": "Dinar Tunisiano (TND)"
+  },
+  "LY": {
+    "continent": "África",
+    "languages": ["Árabe"],
+    "capital": "Trípoli",
+    "population": 6871000,
+    "currency": "Dinar Líbio (LYD)"
+  },
+  "SD": {
+    "continent": "África",
+    "languages": ["Árabe", "Inglês"],
+    "capital": "Cartum",
+    "population": 43850000,
+    "currency": "Libra Sudanesa (SDG)"
+  },
+  "ET": {
+    "continent": "África",
+    "languages": ["Amárico"],
+    "capital": "Adis Abeba",
+    "population": 114900000,
+    "currency": "Birr (ETB)"
+  },
+  "KE": {
+    "continent": "África",
+    "languages": ["Inglês", "Suaíli"],
+    "capital": "Nairobi",
+    "population": 53770000,
+    "currency": "Xelim Queniano (KES)"
+  },
+  "UG": {
+    "continent": "África",
+    "languages": ["Inglês", "Suaíli"],
+    "capital": "Kampala",
+    "population": 45740000,
+    "currency": "Xelim Ugandês (UGX)"
+  },
+  "TZ": {
+    "continent": "África",
+    "languages": ["Suaíli", "Inglês"],
+    "capital": "Dodoma",
+    "population": 59730000,
+    "currency": "Xelim Tanzaniano (TZS)"
+  },
+  "RW": {
+    "continent": "África",
+    "languages": ["Kinyarwanda", "Francês", "Inglês"],
+    "capital": "Kigali",
+    "population": 12950000,
+    "currency": "Franco Ruandês (RWF)"
+  },
+  "BI": {
+    "continent": "África",
+    "languages": ["Kirundi", "Francês"],
+    "capital": "Gitega",
+    "population": 11890000,
+    "currency": "Franco do Burundi (BIF)"
+  },
+  "CD": {
+    "continent": "África",
+    "languages": ["Francês", "Lingala", "Swahili"],
+    "capital": "Kinshasa",
+    "population": 89560000,
+    "currency": "Franco Congolês (CDF)"
+  },
+  "CG": {
+    "continent": "África",
+    "languages": ["Francês", "Lingala"],
+    "capital": "Brazzaville",
+    "population": 5518000,
+    "currency": "Franco CFA (XAF)"
+  },
+  "CF": {
+    "continent": "África",
+    "languages": ["Francês", "Sango"],
+    "capital": "Bangui",
+    "population": 4830000,
+    "currency": "Franco CFA (XAF)"
+  },
+  "TD": {
+    "continent": "África",
+    "languages": ["Árabe", "Francês"],
+    "capital": "N'Djamena",
+    "population": 16430000,
+    "currency": "Franco CFA (XAF)"
+  },
+  "NE": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Niamey",
+    "population": 24210000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "ML": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Bamako",
+    "population": 20250000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "BF": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Ouagadougou",
+    "population": 20900000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "SN": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Dakar",
+    "population": 16740000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "GN": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Conakry",
+    "population": 13130000,
+    "currency": "Franco Guineano (GNF)"
+  },
+  "GW": {
+    "continent": "África",
+    "languages": ["Português"],
+    "capital": "Bissau",
+    "population": 1968000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "SL": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Freetown",
+    "population": 7977000,
+    "currency": "Leone (SLL)"
+  },
+  "LR": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Monróvia",
+    "population": 5058000,
+    "currency": "Dólar Liberiano (LRD)"
+  },
+  "CI": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Yamoussoukro",
+    "population": 26380000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "GH": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Accra",
+    "population": 31070000,
+    "currency": "Cedi (GHS)"
+  },
+  "TG": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Lomé",
+    "population": 8279000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "BJ": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Porto-Novo",
+    "population": 12120000,
+    "currency": "Franco CFA (XOF)"
+  },
+  "NG": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Abuja",
+    "population": 206100000,
+    "currency": "Naira (NGN)"
+  },
+  "CM": {
+    "continent": "África",
+    "languages": ["Francês", "Inglês"],
+    "capital": "Yaoundé",
+    "population": 26550000,
+    "currency": "Franco CFA (XAF)"
+  },
+  "GA": {
+    "continent": "África",
+    "languages": ["Francês"],
+    "capital": "Libreville",
+    "population": 2226000,
+    "currency": "Franco CFA (XAF)"
+  },
+  "GQ": {
+    "continent": "África",
+    "languages": ["Espanhol", "Francês", "Português"],
+    "capital": "Malabo",
+    "population": 1403000,
+    "currency": "Franco CFA (XAF)"
+  },
+  "ST": {
+    "continent": "África",
+    "languages": ["Português"],
+    "capital": "São Tomé",
+    "population": 219000,
+    "currency": "Dobra (STN)"
+  },
+  "AO": {
+    "continent": "África",
+    "languages": ["Português"],
+    "capital": "Luanda",
+    "population": 32870000,
+    "currency": "Kwanza (AOA)"
+  },
+  "ZM": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Lusaka",
+    "population": 18380000,
+    "currency": "Kwacha (ZMW)"
+  },
+  "ZW": {
+    "continent": "África",
+    "languages": ["Inglês", "Shona", "Ndebele"],
+    "capital": "Harare",
+    "population": 14860000,
+    "currency": "Dólar do Zimbábue (ZWL)"
+  },
+  "BW": {
+    "continent": "África",
+    "languages": ["Inglês", "Tswana"],
+    "capital": "Gaborone",
+    "population": 2351000,
+    "currency": "Pula (BWP)"
+  },
+  "NA": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Windhoek",
+    "population": 2540000,
+    "currency": "Dólar da Namíbia (NAD)"
+  },
+  "LS": {
+    "continent": "África",
+    "languages": ["Inglês", "Sesotho"],
+    "capital": "Maseru",
+    "population": 2142000,
+    "currency": "Loti (LSL)"
+  },
+  "SZ": {
+    "continent": "África",
+    "languages": ["Inglês", "Swazi"],
+    "capital": "Mbabane",
+    "population": 1160000,
+    "currency": "Lilangeni (SZL)"
+  },
+  "MG": {
+    "continent": "África",
+    "languages": ["Malgaxe", "Francês"],
+    "capital": "Antananarivo",
+    "population": 27690000,
+    "currency": "Ariary (MGA)"
+  },
+  "MU": {
+    "continent": "África",
+    "languages": ["Inglês", "Francês"],
+    "capital": "Port Louis",
+    "population": 1272000,
+    "currency": "Rupia Mauriciana (MUR)"
+  },
+  "SC": {
+    "continent": "África",
+    "languages": ["Inglês", "Francês", "Crioulo"],
+    "capital": "Victoria",
+    "population": 98300,
+    "currency": "Rupia das Seychelles (SCR)"
+  },
+  "KM": {
+    "continent": "África",
+    "languages": ["Árabe", "Francês", "Comoriano"],
+    "capital": "Moroni",
+    "population": 869000,
+    "currency": "Franco das Comores (KMF)"
+  },
+  "CV": {
+    "continent": "África",
+    "languages": ["Português"],
+    "capital": "Praia",
+    "population": 555000,
+    "currency": "Escudo Cabo-Verdiano (CVE)"
+  },
+  "MR": {
+    "continent": "África",
+    "languages": ["Árabe"],
+    "capital": "Nouakchott",
+    "population": 4649000,
+    "currency": "Ouguiya (MRU)"
+  },
+  "EH": {
+    "continent": "África",
+    "languages": ["Árabe", "Espanhol"],
+    "capital": "El Aaiún",
+    "population": 567000,
+    "currency": "Dirham Marroquino (MAD)"
+  },
+  "GM": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Banjul",
+    "population": 2417000,
+    "currency": "Dalasi (GMD)"
+  },
+  "DJ": {
+    "continent": "África",
+    "languages": ["Árabe", "Francês"],
+    "capital": "Djibouti",
+    "population": 988000,
+    "currency": "Franco do Djibouti (DJF)"
+  },
+  "SO": {
+    "continent": "África",
+    "languages": ["Somali", "Árabe"],
+    "capital": "Mogadíscio",
+    "population": 15890000,
+    "currency": "Xelim Somali (SOS)"
+  },
+  "ER": {
+    "continent": "África",
+    "languages": ["Tigrinya", "Árabe", "Inglês"],
+    "capital": "Asmara",
+    "population": 3546000,
+    "currency": "Nakfa (ERN)"
+  },
+  "SS": {
+    "continent": "África",
+    "languages": ["Inglês"],
+    "capital": "Juba",
+    "population": 11190000,
+    "currency": "Libra Sul-Sudanesa (SSP)"
+  }
+} 

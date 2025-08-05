@@ -4,6 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:world_flags/firebase_options.dart';
 
 import 'screens/home_screen.dart';
+import 'services/hint_service.dart';
 import 'services/translation_service.dart';
 import 'services/ui_translation_service.dart';
 
@@ -19,6 +20,7 @@ void main() async {
 
   await TranslationService.initialize();
   await UITranslationService.initialize();
+  await HintService.loadHintsData();
   runApp(const MyApp());
 }
 

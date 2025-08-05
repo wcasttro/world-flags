@@ -3,11 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../models/country.dart';
+import '../models/country_hint.dart';
 import '../models/game_state.dart';
 import '../models/language.dart';
 import '../models/user_error.dart';
 import '../services/error_review_service.dart';
 import '../services/flags_service.dart';
+import '../services/hint_service.dart';
 import '../services/language_service.dart';
 import '../services/ui_translation_service.dart';
 import '../utils/admob.dart';
@@ -67,8 +69,10 @@ class _GameScreenState extends State<GameScreen> {
         _selectedLanguage = selectedLanguage;
       });
 
-      // Carregar dados das bandeiras e obter países
+      // Carregar dados das bandeiras e dicas
       await FlagsService.loadFlagsData();
+      await HintService.loadHintsData();
+
       final countries = FlagsService.getRandomCountries(50);
       final gameCountries = countries.take(10).toList();
 
@@ -277,7 +281,7 @@ class _GameScreenState extends State<GameScreen> {
         elevation: 0,
         actions: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.2),
@@ -306,7 +310,7 @@ class _GameScreenState extends State<GameScreen> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 // Progresso
@@ -316,7 +320,7 @@ class _GameScreenState extends State<GameScreen> {
                   valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
 
                 // Pergunta
                 Text(
@@ -326,44 +330,42 @@ class _GameScreenState extends State<GameScreen> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.center,
                 ),
-
-                const SizedBox(height: 32),
-
-                // Bandeira
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          blurRadius: 15,
-                          offset: const Offset(0, 8),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: FlagImage(
-                        flagUrl: _gameState!.currentCountry!.flagUrl,
-                      ),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 32),
-
-                // Opções
-                ..._gameState!.options
-                    .map((option) => _buildOptionButton(option)),
 
                 const SizedBox(height: 16),
 
-                // Banner Ad
-                Center(
-                  child: _adMod.banner(),
+                // Bandeira
+                FlagImage(
+                  height: 250,
+                  flagUrl: _gameState!.currentCountry!.flagUrl,
+                ),
+
+                const SizedBox(height: 40),
+
+                // Opções
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ..._gameState!.options
+                            .map((option) => _buildOptionButton(option)),
+
+                        const SizedBox(height: 8),
+
+                        // Botão de dica
+                        if (_gameState!.currentCountry != null)
+                          _buildHintButton(),
+
+                        const SizedBox(height: 8),
+
+                        // Banner Ad
+                        Center(
+                          child: _adMod.banner(),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -400,6 +402,189 @@ class _GameScreenState extends State<GameScreen> {
       isWrong: isWrong,
       isAnswered: _gameState!.isAnswered,
       feedbackIcon: feedbackIcon,
+    );
+  }
+
+  Widget _buildHintButton() {
+    final countryCode = _gameState!.currentCountry!.code;
+    final hint = HintService.getHint(countryCode);
+    final hasHint = hint != null;
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: ElevatedButton.icon(
+        onPressed: hasHint
+            ? () {
+                _showHintBottomSheet(hint);
+              }
+            : null,
+        icon: Icon(
+          Icons.lightbulb,
+          color: hasHint ? Colors.white : Colors.grey,
+          size: 20,
+        ),
+        label: Text(
+          UITranslationService.translate(
+              'show_hint_button', _selectedLanguage!),
+          style: TextStyle(
+            color: hasHint ? Colors.white : Colors.grey,
+            fontSize: 14,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: hasHint ? Colors.blue[600] : Colors.grey[400],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        ),
+      ),
+    );
+  }
+
+  void _showHintBottomSheet(CountryHint hint) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Cabeçalho
+                Row(
+                  children: [
+                    Icon(
+                      Icons.lightbulb,
+                      color: Colors.orange[600],
+                      size: 24,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      UITranslationService.translate(
+                          'hint_title', _selectedLanguage!),
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.orange[600],
+                          ),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close),
+                      iconSize: 20,
+                      tooltip: UITranslationService.translate(
+                          'close', _selectedLanguage!),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16),
+
+                // Informações da dica
+                _buildHintInfo(
+                  context,
+                  Icons.public,
+                  UITranslationService.translate(
+                      'continent_label', _selectedLanguage!),
+                  hint.continent,
+                ),
+
+                const SizedBox(height: 12),
+
+                _buildHintInfo(
+                  context,
+                  Icons.language,
+                  UITranslationService.translate(
+                      'languages_label', _selectedLanguage!),
+                  hint.getFormattedLanguages(),
+                ),
+
+                const SizedBox(height: 12),
+
+                _buildHintInfo(
+                  context,
+                  Icons.location_city,
+                  UITranslationService.translate(
+                      'capital_label', _selectedLanguage!),
+                  hint.capital,
+                ),
+
+                const SizedBox(height: 12),
+
+                _buildHintInfo(
+                  context,
+                  Icons.people,
+                  UITranslationService.translate(
+                      'population_label', _selectedLanguage!),
+                  hint.getFormattedPopulation(),
+                ),
+
+                const SizedBox(height: 12),
+
+                _buildHintInfo(
+                  context,
+                  Icons.attach_money,
+                  UITranslationService.translate(
+                      'currency_label', _selectedLanguage!),
+                  hint.currency,
+                ),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHintInfo(
+    BuildContext context,
+    IconData icon,
+    String label,
+    String value,
+  ) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 18,
+          color: Colors.grey[600],
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+              Text(
+                value,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -67,5 +67,16 @@
   "clear_errors_message": "Are you sure you want to clear all error history? This action cannot be undone.",
   "clear": "Clear",
   "cancel": "Cancel",
-  "review_errors_button": "Review Errors"
+  "review_errors_button": "Review Errors",
+  "hint_title": "Hint",
+  "continent_label": "Continent",
+  "languages_label": "Languages",
+  "capital_label": "Capital",
+  "population_label": "Population",
+  "currency_label": "Currency",
+  "show_hint_button": "Show Hint",
+  "hide_hint_button": "Hide Hint",
+  "hint_available": "Hint Available",
+  "hint_not_available": "No Hint Available",
+  "close": "Close"
 } 

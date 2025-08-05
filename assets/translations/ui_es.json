@@ -67,5 +67,16 @@
   "clear_errors_message": "¿Estás seguro de que quieres limpiar todo el historial de errores? Esta acción no se puede deshacer.",
   "clear": "Limpiar",
   "cancel": "Cancelar",
-  "review_errors_button": "Revisar Errores"
+  "review_errors_button": "Revisar Errores",
+  "hint_title": "Pista",
+  "continent_label": "Continente",
+  "languages_label": "Idiomas",
+  "capital_label": "Capital",
+  "population_label": "Población",
+  "currency_label": "Moneda",
+  "show_hint_button": "Mostrar Pista",
+  "hide_hint_button": "Ocultar Pista",
+  "hint_available": "Pista Disponible",
+  "hint_not_available": "Sin Pista Disponible",
+  "close": "Cerrar"
 } 

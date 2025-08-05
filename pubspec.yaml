@@ -29,5 +29,6 @@ flutter:
   assets:
     - assets/translations/
     - assets/flags_data.json
+    - assets/country_hints.json
 
   

@@ -67,5 +67,16 @@
   "clear_errors_message": "Tem certeza que deseja limpar todo o histórico de erros? Esta ação não pode ser desfeita.",
   "clear": "Limpar",
   "cancel": "Cancelar",
-  "review_errors_button": "Revisar Erros"
+  "review_errors_button": "Revisar Erros",
+  "hint_title": "Dica",
+  "continent_label": "Continente",
+  "languages_label": "Idiomas",
+  "capital_label": "Capital",
+  "population_label": "População",
+  "currency_label": "Moeda",
+  "show_hint_button": "Mostrar Dica",
+  "hide_hint_button": "Ocultar Dica",
+  "hint_available": "Dica Disponível",
+  "hint_not_available": "Sem Dica Disponível",
+  "close": "Fechar"
 } 
