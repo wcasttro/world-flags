@@ -362,65 +362,72 @@ class _GameScreenState extends State<GameScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                // Progresso
-                LinearProgressIndicator(
-                  value: _gameState!.progress,
-                  backgroundColor: Colors.white.withOpacity(0.3),
-                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-
-                const SizedBox(height: 12),
-
-                // Pergunta
-                Text(
-                  UITranslationService.translate(
-                      'game_question', _selectedLanguage!),
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-
-                const SizedBox(height: 16),
-
-                // Bandeira
-                FlagImage(
-                  height: 250,
-                  flagUrl: _gameState!.currentCountry!.flagUrl,
-                ),
-
-                const SizedBox(height: 40),
+                _buildHeader(),
 
                 // Opções
-                Flexible(
+                Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
                         ..._gameState!.options
                             .map((option) => _buildOptionButton(option)),
-
                         const SizedBox(height: 8),
-
-                        // Botão de dica
-                        if (_gameState!.currentCountry != null)
-                          _buildHintButton(),
-
-                        const SizedBox(height: 8),
-
-                        // Banner Ad
-                        Center(
-                          child: _adMod.banner(),
-                        ),
                       ],
                     ),
                   ),
+                ),
+
+                // Banner Ad
+                Center(
+                  child: _adMod.banner(),
                 ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Column(
+      children: [
+        LinearProgressIndicator(
+          value: _gameState!.progress,
+          backgroundColor: Colors.white.withOpacity(0.3),
+          valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+        ),
+        const SizedBox(height: 12),
+        // Título e botão de dica em linha
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                UITranslationService.translate(
+                    'game_question', _selectedLanguage!),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            if (_gameState!.currentCountry != null)
+              SizedBox(
+                height: 32,
+                child: _buildHintButton(),
+              ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        // Bandeira
+        FlagImage(
+          height: 200,
+          flagUrl: _gameState!.currentCountry!.flagUrl,
+        ),
+
+        const SizedBox(height: 40),
+      ],
     );
   }
 
@@ -460,7 +467,7 @@ class _GameScreenState extends State<GameScreen> {
     final hasHint = hint != null;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.only(left: 8),
       child: ElevatedButton.icon(
         onPressed: hasHint
             ? () {
@@ -474,23 +481,23 @@ class _GameScreenState extends State<GameScreen> {
             : null,
         icon: Icon(
           Icons.lightbulb,
-          color: hasHint ? Colors.white : Colors.grey,
+          color: hasHint ? Colors.yellow[600] : Colors.grey,
           size: 20,
         ),
         label: Text(
-          UITranslationService.translate(
-              'show_hint_button', _selectedLanguage!),
+          UITranslationService.translate('hint_title', _selectedLanguage!),
           style: TextStyle(
             color: hasHint ? Colors.white : Colors.grey,
-            fontSize: 14,
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
           ),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: hasHint ? Colors.blue[600] : Colors.grey[400],
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(8),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         ),
       ),
     );
