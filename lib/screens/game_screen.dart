@@ -371,7 +371,6 @@ class _GameScreenState extends State<GameScreen> {
                       children: [
                         ..._gameState!.options
                             .map((option) => _buildOptionButton(option)),
-                        const SizedBox(height: 8),
                       ],
                     ),
                   ),
@@ -426,7 +425,7 @@ class _GameScreenState extends State<GameScreen> {
           flagUrl: _gameState!.currentCountry!.flagUrl,
         ),
 
-        const SizedBox(height: 40),
+        const SizedBox(height: 10),
       ],
     );
   }
