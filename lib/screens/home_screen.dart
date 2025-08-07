@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/language.dart';
 import '../services/language_service.dart';
 import '../services/ui_translation_service.dart';
+import 'about_screen.dart';
 import 'error_review_screen.dart';
 import 'game_screen.dart';
 import 'language_screen.dart';
@@ -169,7 +170,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   UITranslationService.translate(
                       'about_button', _selectedLanguage!),
                   Icons.info,
-                  () => _showAboutDialog(context),
+                  () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AboutScreen(),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -216,27 +222,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  void _showAboutDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-            UITranslationService.translate('about_title', _selectedLanguage!)),
-        content: Text(
-          UITranslationService.translate(
-              'about_description', _selectedLanguage!),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(UITranslationService.translate(
-                'confirm_button', _selectedLanguage!)),
-          ),
-        ],
       ),
     );
   }

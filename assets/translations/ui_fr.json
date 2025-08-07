@@ -78,5 +78,22 @@
   "hide_hint_button": "Masquer l'Indice",
   "hint_available": "Indice Disponible",
   "hint_not_available": "Aucun Indice Disponible",
-  "close": "Fermer"
+  "close": "Fermer",
+  "about_section_title": "À Propos",
+  "about_section_description": "Testez vos connaissances sur les drapeaux du monde avec ce jeu éducatif de quiz. Apprenez sur différents pays et leurs drapeaux tout en vous amusant !",
+  "features_section_title": "Fonctionnalités",
+  "features_section_description": "• Quiz avec des drapeaux du monde entier\n• Support multilingue\n• Classement pour suivre votre progression\n• Révision des erreurs pour apprendre de vos erreurs\n• Indices pour vous aider quand vous êtes bloqué",
+  "how_to_play_section_title": "Comment Jouer",
+  "how_to_play_section_description": "1. Un drapeau sera affiché\n2. Choisissez le bon pays parmi les options\n3. Gagnez des points pour les bonnes réponses\n4. Essayez d'obtenir le score le plus élevé !",
+  "app_stats_section_title": "Statistiques de l'App",
+  "app_stats_section_description": "• 200+ pays et territoires\n• Images de drapeaux haute qualité\n• Niveaux de difficulté multiples\n• Support pour jouer hors ligne",
+  "technical_info_section_title": "Informations Techniques",
+  "technical_info_section_description": "• Développé avec Flutter\n• Intégration Firebase\n• Publicité AdMob\n• Crashlytics pour la stabilité\n• Shared preferences pour le stockage des données",
+  "share_app_button": "Partager l'App",
+  "rate_app_button": "Évaluer l'App",
+  "send_feedback_button": "Envoyer un Commentaire",
+  "privacy_policy_button": "Politique de Confidentialité",
+  "privacy_policy_title": "Politique de Confidentialité",
+  "privacy_policy_content": "Cette app collecte des données minimales pour la fonctionnalité :\n\n• Scores de jeu (stockés localement)\n• Historique des erreurs (stocké localement)\n• Préférences de langue (stockées localement)\n\nAucune information personnelle n'est collectée ou partagée avec des tiers.\n\nL'app peut afficher des publicités via Google AdMob.",
+  "feature_coming_soon": "Fonctionnalité bientôt disponible !"
 } 

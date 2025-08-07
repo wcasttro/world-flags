@@ -78,5 +78,22 @@
   "hide_hint_button": "Ocultar Dica",
   "hint_available": "Dica Disponível",
   "hint_not_available": "Sem Dica Disponível",
-  "close": "Fechar"
+  "close": "Fechar",
+  "about_section_title": "Sobre",
+  "about_section_description": "Teste seus conhecimentos sobre bandeiras do mundo com este jogo educativo de quiz. Aprenda sobre diferentes países e suas bandeiras enquanto se diverte!",
+  "features_section_title": "Recursos",
+  "features_section_description": "• Quiz com bandeiras de todo o mundo\n• Suporte a múltiplos idiomas\n• Ranking para acompanhar seu progresso\n• Revisão de erros para aprender com os erros\n• Dicas para ajudar quando estiver em dúvida",
+  "how_to_play_section_title": "Como Jogar",
+  "how_to_play_section_description": "1. Uma bandeira será exibida\n2. Escolha o país correto entre as opções\n3. Ganhe pontos por respostas corretas\n4. Tente alcançar a maior pontuação!",
+  "app_stats_section_title": "Estatísticas do App",
+  "app_stats_section_description": "• 200+ países e territórios\n• Imagens de bandeiras em alta qualidade\n• Múltiplos níveis de dificuldade\n• Suporte para jogar offline",
+  "technical_info_section_title": "Informações Técnicas",
+  "technical_info_section_description": "• Desenvolvido com Flutter\n• Integração com Firebase\n• Publicidade AdMob\n• Crashlytics para estabilidade\n• Shared preferences para armazenamento de dados",
+  "share_app_button": "Compartilhar App",
+  "rate_app_button": "Avaliar App",
+  "send_feedback_button": "Enviar Feedback",
+  "privacy_policy_button": "Política de Privacidade",
+  "privacy_policy_title": "Política de Privacidade",
+  "privacy_policy_content": "Este app coleta dados mínimos para funcionalidade:\n\n• Pontuações do jogo (armazenadas localmente)\n• Histórico de erros (armazenado localmente)\n• Preferências de idioma (armazenadas localmente)\n\nNenhuma informação pessoal é coletada ou compartilhada com terceiros.\n\nO app pode exibir anúncios através do Google AdMob.",
+  "feature_coming_soon": "Recurso em breve!"
 } 

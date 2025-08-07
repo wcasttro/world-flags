@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../services/feedback_service.dart';
 
 class AnimatedOptionButton extends StatefulWidget {
@@ -57,7 +58,7 @@ class _AnimatedOptionButtonState extends State<AnimatedOptionButton>
   @override
   void didUpdateWidget(AnimatedOptionButton oldWidget) {
     super.didUpdateWidget(oldWidget);
-    
+
     // Animar quando a resposta for dada
     if (widget.isAnswered && !oldWidget.isAnswered) {
       if (widget.isCorrect) {
@@ -113,7 +114,7 @@ class _AnimatedOptionButtonState extends State<AnimatedOptionButton>
       builder: (context, child) {
         double scale = widget.isCorrect ? _scaleAnimation.value : 1.0;
         double shake = widget.isWrong ? _shakeAnimation.value : 0.0;
-        
+
         return Transform.scale(
           scale: scale,
           child: Transform.translate(
@@ -135,13 +136,17 @@ class _AnimatedOptionButtonState extends State<AnimatedOptionButton>
                     borderRadius: BorderRadius.circular(15),
                     side: BorderSide(color: borderColor, width: 2),
                   ),
-                  elevation: widget.isAnswered && (widget.isCorrect || widget.isWrong) ? 8 : 0,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  elevation:
+                      widget.isAnswered && (widget.isCorrect || widget.isWrong)
+                          ? 8
+                          : 0,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (widget.isAnswered && (widget.isCorrect || widget.isWrong))
+                    if (widget.isAnswered &&
+                        (widget.isCorrect || widget.isWrong))
                       AnimatedOpacity(
                         opacity: widget.isAnswered ? 1.0 : 0.0,
                         duration: const Duration(milliseconds: 200),
@@ -151,7 +156,8 @@ class _AnimatedOptionButtonState extends State<AnimatedOptionButton>
                           size: 20,
                         ),
                       ),
-                    if (widget.isAnswered && (widget.isCorrect || widget.isWrong))
+                    if (widget.isAnswered &&
+                        (widget.isCorrect || widget.isWrong))
                       const SizedBox(width: 8),
                     Flexible(
                       child: Text(
@@ -173,4 +179,4 @@ class _AnimatedOptionButtonState extends State<AnimatedOptionButton>
       },
     );
   }
-} 
+}

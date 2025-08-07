@@ -78,5 +78,22 @@
   "hide_hint_button": "Ocultar Pista",
   "hint_available": "Pista Disponible",
   "hint_not_available": "Sin Pista Disponible",
-  "close": "Cerrar"
+  "close": "Cerrar",
+  "about_section_title": "Acerca de",
+  "about_section_description": "Pon a prueba tus conocimientos sobre banderas del mundo con este juego educativo de quiz. ¡Aprende sobre diferentes países y sus banderas mientras te diviertes!",
+  "features_section_title": "Características",
+  "features_section_description": "• Quiz con banderas de todo el mundo\n• Soporte para múltiples idiomas\n• Clasificación para seguir tu progreso\n• Revisión de errores para aprender de los errores\n• Pistas para ayudar cuando estés atascado",
+  "how_to_play_section_title": "Cómo Jugar",
+  "how_to_play_section_description": "1. Se mostrará una bandera\n2. Elige el país correcto entre las opciones\n3. Gana puntos por respuestas correctas\n4. ¡Intenta alcanzar la puntuación más alta!",
+  "app_stats_section_title": "Estadísticas de la App",
+  "app_stats_section_description": "• 200+ países y territorios\n• Imágenes de banderas de alta calidad\n• Múltiples niveles de dificultad\n• Soporte para jugar sin conexión",
+  "technical_info_section_title": "Información Técnica",
+  "technical_info_section_description": "• Desarrollado con Flutter\n• Integración con Firebase\n• Publicidad AdMob\n• Crashlytics para estabilidad\n• Shared preferences para almacenamiento de datos",
+  "share_app_button": "Compartir App",
+  "rate_app_button": "Calificar App",
+  "send_feedback_button": "Enviar Comentarios",
+  "privacy_policy_button": "Política de Privacidad",
+  "privacy_policy_title": "Política de Privacidad",
+  "privacy_policy_content": "Esta app recopila datos mínimos para funcionalidad:\n\n• Puntuaciones del juego (almacenadas localmente)\n• Historial de errores (almacenado localmente)\n• Preferencias de idioma (almacenadas localmente)\n\nNo se recopila ni comparte información personal con terceros.\n\nLa app puede mostrar anuncios a través de Google AdMob.",
+  "feature_coming_soon": "¡Función próximamente!"
 } 

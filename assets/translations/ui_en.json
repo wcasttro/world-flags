@@ -78,5 +78,22 @@
   "hide_hint_button": "Hide Hint",
   "hint_available": "Hint Available",
   "hint_not_available": "No Hint Available",
-  "close": "Close"
+  "close": "Close",
+  "about_section_title": "About",
+  "about_section_description": "Test your knowledge about world flags with this educational quiz game. Learn about different countries and their flags while having fun!",
+  "features_section_title": "Features",
+  "features_section_description": "• Quiz with flags from around the world\n• Multiple language support\n• Leaderboard to track your progress\n• Error review to learn from mistakes\n• Hints to help you when stuck",
+  "how_to_play_section_title": "How to Play",
+  "how_to_play_section_description": "1. A flag will be displayed\n2. Choose the correct country from the options\n3. Get points for correct answers\n4. Try to achieve the highest score!",
+  "app_stats_section_title": "App Statistics",
+  "app_stats_section_description": "• 200+ countries and territories\n• High-quality flag images\n• Multiple difficulty levels\n• Offline play support",
+  "technical_info_section_title": "Technical Information",
+  "technical_info_section_description": "• Built with Flutter\n• Firebase integration\n• AdMob advertising\n• Crashlytics for stability\n• Shared preferences for data storage",
+  "share_app_button": "Share App",
+  "rate_app_button": "Rate App",
+  "send_feedback_button": "Send Feedback",
+  "privacy_policy_button": "Privacy Policy",
+  "privacy_policy_title": "Privacy Policy",
+  "privacy_policy_content": "This app collects minimal data for functionality:\n\n• Game scores (stored locally)\n• Error history (stored locally)\n• Language preferences (stored locally)\n\nNo personal information is collected or shared with third parties.\n\nThe app may display ads through Google AdMob.",
+  "feature_coming_soon": "Feature coming soon!"
 } 
