@@ -76,16 +76,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       const Icon(
                         Icons.flag,
-                        size: 60,
+                        size: 50,
                         color: Colors.white,
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 10),
                       Text(
                         UITranslationService.translate(
                             'home_title', _selectedLanguage!),
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -194,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ) {
     return SizedBox(
       width: double.infinity,
-      height: 60,
+      height: 50,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -214,11 +214,14 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Icon(icon, size: 24),
             const SizedBox(width: 12),
-            Text(
-              text,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+            Flexible(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

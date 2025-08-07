@@ -126,7 +126,7 @@ class _AnimatedOptionButtonState extends State<AnimatedOptionButton>
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
               width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 12),
+              margin: const EdgeInsets.only(bottom: 8),
               child: ElevatedButton(
                 onPressed: widget.isAnswered ? null : widget.onPressed,
                 style: ElevatedButton.styleFrom(

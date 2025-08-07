@@ -73,21 +73,7 @@ class _GameScreenState extends State<GameScreen> {
       // Log da seleção de idioma no Crashlytics
       CrashlyticsService.logLanguageSelection(selectedLanguage.code);
 
-      // Carregar dados das bandeiras e dicas
-      try {
-        await FlagsService.loadFlagsData();
-        CrashlyticsService.logDataLoading(
-          dataType: 'flags_data',
-          success: true,
-        );
-      } catch (e) {
-        CrashlyticsService.logDataLoading(
-          dataType: 'flags_data',
-          success: false,
-          error: e.toString(),
-        );
-      }
-
+      // Carregar dados das dicas primeiro, depois das bandeiras
       try {
         await HintService.loadHintsData();
         CrashlyticsService.logDataLoading(
@@ -102,8 +88,29 @@ class _GameScreenState extends State<GameScreen> {
         );
       }
 
+      try {
+        await FlagsService.loadFlagsData();
+        CrashlyticsService.logDataLoading(
+          dataType: 'flags_data',
+          success: true,
+        );
+      } catch (e) {
+        CrashlyticsService.logDataLoading(
+          dataType: 'flags_data',
+          success: false,
+          error: e.toString(),
+        );
+      }
+
       final countries = FlagsService.getRandomCountries(50);
       final gameCountries = countries.take(10).toList();
+
+      // Verificar se todos os países selecionados têm dicas
+      for (final country in gameCountries) {
+        final hasHint = HintService.hasHint(country.code);
+        debugPrint(
+            'Country ${country.code} (${country.name}) has hint: $hasHint');
+      }
 
       setState(() {
         _gameState = GameState(
@@ -365,14 +372,12 @@ class _GameScreenState extends State<GameScreen> {
                 _buildHeader(),
 
                 // Opções
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ..._gameState!.options
-                            .map((option) => _buildOptionButton(option)),
-                      ],
-                    ),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ..._gameState!.options
+                          .map((option) => _buildOptionButton(option)),
+                    ],
                   ),
                 ),
 
@@ -464,6 +469,10 @@ class _GameScreenState extends State<GameScreen> {
     final countryCode = _gameState!.currentCountry!.code;
     final hint = HintService.getHint(countryCode);
     final hasHint = hint != null;
+
+    // Log para debug
+    debugPrint(
+        'Building hint button for country $countryCode, has hint: $hasHint');
 
     return Container(
       margin: const EdgeInsets.only(left: 8),

@@ -116,24 +116,25 @@ class _GameOverScreenState extends State<GameOverScreen> {
                   ),
                   child: Icon(
                     _percentage >= 0.7 ? Icons.emoji_events : Icons.flag,
-                    size: 80,
+                    size: 40,
                     color: Colors.white,
                   ),
                 ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 20),
 
                 // Título
                 Text(
                   UITranslationService.translate(
                       'game_over_title', _selectedLanguage!),
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
 
                 // Pontuação
                 Text(
@@ -142,10 +143,11 @@ class _GameOverScreenState extends State<GameOverScreen> {
                     _selectedLanguage!,
                     {'score': widget.score.toString()},
                   ),
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
 
                 const SizedBox(height: 8),
@@ -158,7 +160,7 @@ class _GameOverScreenState extends State<GameOverScreen> {
                       ),
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
 
                 // Mensagem
                 Container(
@@ -263,11 +265,14 @@ class _GameOverScreenState extends State<GameOverScreen> {
           children: [
             Icon(icon, size: 24),
             const SizedBox(width: 12),
-            Text(
-              text,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+            Flexible(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

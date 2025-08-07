@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../models/country.dart';
+import '../services/hint_service.dart';
 import 'translation_service.dart';
 
 class FlagsService {
@@ -99,13 +100,22 @@ class FlagsService {
     return List.from(_allCountries!);
   }
 
-  /// Obtém países aleatórios
+  /// Obtém países aleatórios que têm dicas disponíveis
   static List<Country> getRandomCountries(int count) {
     if (!_isLoaded || _allCountries == null) return [];
 
-    final allCountries = List<Country>.from(_allCountries!);
-    allCountries.shuffle();
-    return allCountries.take(count).toList();
+    // Filtrar apenas países que têm dicas disponíveis
+    final countriesWithHints = _allCountries!.where((country) {
+      return HintService.hasHint(country.code);
+    }).toList();
+
+    if (countriesWithHints.isEmpty) {
+      debugPrint('No countries with hints available');
+      return [];
+    }
+
+    countriesWithHints.shuffle();
+    return countriesWithHints.take(count).toList();
   }
 
   /// Verifica se os dados foram carregados
