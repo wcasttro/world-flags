@@ -76,33 +76,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       const Icon(
                         Icons.flag,
-                        size: 80,
+                        size: 60,
                         color: Colors.white,
                       ),
                       const SizedBox(height: 16),
                       Text(
                         UITranslationService.translate(
                             'home_title', _selectedLanguage!),
-                        style:
-                            Theme.of(context).textTheme.headlineLarge?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         UITranslationService.translate(
                             'home_subtitle', _selectedLanguage!),
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: Colors.white.withOpacity(0.9),
-                            ),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
                       ),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 60),
+                const SizedBox(height: 30),
 
                 // Botões do menu
                 _buildMenuButton(
@@ -118,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
                 _buildMenuButton(
                   context,
@@ -133,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
                 _buildMenuButton(
                   context,
@@ -148,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
                 _buildMenuButton(
                   context,
@@ -163,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
                 _buildMenuButton(
                   context,
