@@ -140,7 +140,7 @@ class _AnimatedOptionButtonState extends State<AnimatedOptionButton>
                       widget.isAnswered && (widget.isCorrect || widget.isWrong)
                           ? 8
                           : 0,
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

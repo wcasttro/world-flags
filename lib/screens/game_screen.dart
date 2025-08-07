@@ -368,16 +368,20 @@ class _GameScreenState extends State<GameScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildHeader(),
+                const SizedBox(height: 10),
 
                 // Opções
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ..._gameState!.options
-                          .map((option) => _buildOptionButton(option)),
-                    ],
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ..._gameState!.options
+                            .map((option) => _buildOptionButton(option)),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -401,7 +405,7 @@ class _GameScreenState extends State<GameScreen> {
           backgroundColor: Colors.white.withOpacity(0.3),
           valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 20),
         // Título e botão de dica em linha
         Row(
           children: [
@@ -423,10 +427,10 @@ class _GameScreenState extends State<GameScreen> {
               ),
           ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         // Bandeira
         FlagImage(
-          height: 200,
+          height: MediaQuery.of(context).size.height * 0.26,
           flagUrl: _gameState!.currentCountry!.flagUrl,
         ),
 
