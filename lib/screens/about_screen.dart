@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../models/language.dart';
 import '../services/language_service.dart';
@@ -177,11 +176,6 @@ class _AboutScreenState extends State<AboutScreen> {
                 ),
 
                 const SizedBox(height: 24),
-
-                // Botões de ação
-                _buildActionButtons(context),
-
-                const SizedBox(height: 40),
               ],
             ),
           ),
@@ -235,140 +229,6 @@ class _AboutScreenState extends State<AboutScreen> {
                   color: Colors.white.withOpacity(0.9),
                   height: 1.5,
                 ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionButtons(BuildContext context) {
-    return Column(
-      children: [
-        _buildActionButton(
-          context,
-          Icons.share,
-          UITranslationService.translate(
-              'share_app_button', _selectedLanguage!),
-          () => _shareApp(),
-        ),
-        const SizedBox(height: 12),
-        _buildActionButton(
-          context,
-          Icons.rate_review,
-          UITranslationService.translate('rate_app_button', _selectedLanguage!),
-          () => _rateApp(),
-        ),
-        const SizedBox(height: 12),
-        _buildActionButton(
-          context,
-          Icons.feedback,
-          UITranslationService.translate(
-              'send_feedback_button', _selectedLanguage!),
-          () => _sendFeedback(),
-        ),
-        const SizedBox(height: 12),
-        _buildActionButton(
-          context,
-          Icons.privacy_tip,
-          UITranslationService.translate(
-              'privacy_policy_button', _selectedLanguage!),
-          () => _showPrivacyPolicy(),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildActionButton(
-    BuildContext context,
-    IconData icon,
-    String text,
-    VoidCallback onPressed,
-  ) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: ElevatedButton.icon(
-        onPressed: onPressed,
-        icon: Icon(icon, size: 20),
-        label: Flexible(
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white.withOpacity(0.2),
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          elevation: 0,
-          side: BorderSide(
-            color: Colors.white.withOpacity(0.3),
-            width: 1,
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _shareApp() {
-    // Implementar compartilhamento do app
-    HapticFeedback.lightImpact();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(UITranslationService.translate(
-            'feature_coming_soon', _selectedLanguage!)),
-        backgroundColor: Colors.green,
-      ),
-    );
-  }
-
-  void _rateApp() {
-    // Implementar avaliação do app
-    HapticFeedback.lightImpact();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(UITranslationService.translate(
-            'feature_coming_soon', _selectedLanguage!)),
-        backgroundColor: Colors.green,
-      ),
-    );
-  }
-
-  void _sendFeedback() {
-    // Implementar envio de feedback
-    HapticFeedback.lightImpact();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(UITranslationService.translate(
-            'feature_coming_soon', _selectedLanguage!)),
-        backgroundColor: Colors.green,
-      ),
-    );
-  }
-
-  void _showPrivacyPolicy() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(UITranslationService.translate(
-            'privacy_policy_title', _selectedLanguage!)),
-        content: SingleChildScrollView(
-          child: Text(
-            UITranslationService.translate(
-                'privacy_policy_content', _selectedLanguage!),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-                UITranslationService.translate('close', _selectedLanguage!)),
           ),
         ],
       ),
