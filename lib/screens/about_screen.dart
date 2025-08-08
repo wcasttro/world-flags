@@ -164,18 +164,6 @@ class _AboutScreenState extends State<AboutScreen> {
                 ),
 
                 const SizedBox(height: 24),
-
-                // Informações técnicas
-                _buildInfoSection(
-                  context,
-                  Icons.code,
-                  UITranslationService.translate(
-                      'technical_info_section_title', _selectedLanguage!),
-                  UITranslationService.translate(
-                      'technical_info_section_description', _selectedLanguage!),
-                ),
-
-                const SizedBox(height: 24),
               ],
             ),
           ),
